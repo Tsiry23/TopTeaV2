@@ -77,19 +77,19 @@
                     <h3 class="myModalLabel">Ajout Parcelle</h3>
                   </div>
                   <div class="modal-body">
-                  <form action="../controllers/insertParcelle.php">
+                  <form action="../controllers/CrudParcelle.php" method="get">
+                        <input type="hidden" name="mod" value="c">
                       <div class="form-group">
                         <input class="form-control" placeholder="size" type="text" name="size">
                       </div>
                       <span for="">Date :</span>
                   <div class="modal-body text-center">
                       <div class="form-group">
-                        <input class="form-control" type="date" name="" placeholder="labelle" name="date">
+                        <input class="form-control" type="date" placeholder="labelle" name="date">
                       </div>
                       <span for="">Categorie :</span>
                       <div class="form-group">
-                        <select class="form-control" name="teaCategory" id="">
-                          <option value="">gogo</option>
+                        <select class="form-control" name="teaCategory">
                           <?php for ($i=0; $i!=count($listCatTea); $i++) { ?>
                             <option value="<?php echo $listCatTea[$i]["id"]; ?>"><?php echo $listCatTea[$i]["name"]; ?></option>
                           <?php } ?>
