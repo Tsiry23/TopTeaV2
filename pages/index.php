@@ -15,8 +15,8 @@
         <div class="base-container sign-in">
             <form action="../controllers/traitLogin.php" method="post">
                 <h1>log In</h1>
-                    <input class="formInput" type="email" placeholder="Email" name="mail" values="<?php echo $defaultUser["email"] ?>">
-                    <input class="formInput" type="password" placeholder="Password" name="pwd" values="<?php echo $defaultUser["pswd"] ?>">
+                    <input class="formInput" type="email" placeholder="Email" name="mail" value="<?php echo $defaultUser["email"] ?>">
+                    <input class="formInput" type="password" placeholder="Password" name="pwd" value="<?php echo $defaultUser["pswd"] ?>">
                     <button class="fbtn-orange" type="submit">Sign In</button> 
             </form>
         </div>
