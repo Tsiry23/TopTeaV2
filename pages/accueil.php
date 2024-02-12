@@ -1,6 +1,8 @@
 <?php
     include("../inc/fonction.php");
+
     $listCatTea=getAllTeaCategory();
+    $listParcel=getAllParcel();
 ?>
 <!DOCTYPE html>
 <html>
@@ -48,9 +50,9 @@
   	<div class="row">
       <div class="col-md-1 facture"><br>
         <ul class="nav nav-pills nav-stacked">
-          <li role="presentation"><a class="btn btn-default" id="mn" href="accueil.html"><i class="fa fa-home"></i></a></li>
-          <li role="presentation"><a class="btn btn-default" id="mn" href="listePiker.html"><i class="fa fa-list-alt"></i></a></li>
-          <li role="presentation"><a class="btn btn-default" id="mn" href="GSDepense.html"><i class="fa fa-database"></i></a></li>
+          <li role="presentation"><a class="btn btn-default" id="mn" href="accueil.php"><i class="fa fa-home"></i></a></li>
+          <li role="presentation"><a class="btn btn-default" id="mn" href="listePiker.php"><i class="fa fa-list-alt"></i></a></li>
+          <li role="presentation"><a class="btn btn-default" id="mn" href="GSDepense.php"><i class="fa fa-database"></i></a></li>
       </ul>
       </div>
       <div class="col-md-8">s 
