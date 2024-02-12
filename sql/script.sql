@@ -57,9 +57,11 @@ create table spent (
 );
 
 INSERT INTO user (email, pswd, status) VALUES ('exemple@email.com', 'motdepasse123', 1);
-INSERT INTO teaCategory (name, output) VALUES ('Thé vert', 20.5);
 INSERT INTO parcel (size, idTeaCategory, startDate) VALUES (10.2, 1, '2024-02-12');
+INSERT INTO parcel (size, idTeaCategory, startDate) VALUES (60.2, 1, '2024-02-12');
 INSERT INTO picker (name) VALUES ('Jean Dupont');
+INSERT INTO picker (name) VALUES ('Janot babu');
+INSERT INTO picker (name) VALUES ('Gerak garou');
 INSERT INTO picking (idParcel, qty, theDate) VALUES (1, 15.5, '2024-02-12');
 INSERT INTO salary (salary, salaryDate) VALUES (5000, '2024-02-01');
 INSERT INTO categSpent (name) VALUES ('Transport');
