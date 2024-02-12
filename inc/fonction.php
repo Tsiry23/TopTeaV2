@@ -1,7 +1,8 @@
 <?php  
 	
-	include('connexion.php');
-	
+	//include('connexion.php');
+	include('connectionForDeploiement');
+
 	function login ($email, $pwd) //retourne null si l'user n'existe pas
 	{
 		$sql="select * from user where email=? and pswd=sha1(?)";
