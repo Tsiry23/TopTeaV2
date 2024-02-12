@@ -29,7 +29,7 @@
 		$retour = $req->fetchAll(PDO::FETCH_ASSOC);
 		return $retour;
 	}
-	function getAllTeaCategory($id){
+	function getAllTeaCategory(){
 		$sql= "select * from teaCategory";
 		$connexion= dbconnect();
 		$req = $connexion->prepare($sql);
@@ -126,7 +126,7 @@
 	}
 
 	function AjoutUser($email,$pswd,$status){
-		$sql= "insert into vente values('%s',sha1('%s'),'%d')";
+		$sql= "insert into user values(default,'%s',sha1('%s'),'%d')";
 		$sql= sprintf($sql,$email,$pswd,$status);
 		$connexion= dbconnect();
 		$req = $connexion->prepare($sql);
@@ -134,43 +134,43 @@
 	}
 
 	function AjoutTeaCategory($name,$output){
-		$sql= "insert into teaCategory values('%s','%d')";
+		$sql= "insert into teaCategory values(default,'%s','%d')";
 		$sql= sprintf($sql,$name,$output);
 		$connexion= dbconnect();
 		$req = $connexion->prepare($sql);
 		$req->execute();
 	}
-	function AjoutParcel($size,$idTeaCategory){
-		$sql= "insert into parcel values('%d','%d')";
-		$sql= sprintf($sql,$size,$idTeaCategory);
+	function AjoutParcel($size,$idTeaCategory,$startDate){
+		$sql= "insert into parcel values(default,'%d','%d','%s')";
+		$sql= sprintf($sql,$size,$idTeaCategory,$startDate);
 		$connexion= dbconnect();
 		$req = $connexion->prepare($sql);
 		$req->execute();
 	}
 	function AjoutPicker($name){
-		$sql= "insert into picker values('%s')";
+		$sql= "insert into picker values(default,'%s')";
 		$sql= sprintf($sql,$name);
 		$connexion= dbconnect();
 		$req = $connexion->prepare($sql);
 		$req->execute();
 	}
 	function AjoutPicking($idParcel,$qty,$theDate){
-		$sql= "insert into picker values('%d','%s','%s')";
+		$sql= "insert into picking values(default,'%d','%s','%s')";
 		$sql= sprintf($sql,$idParcel,$qty,$theDate);
 		$connexion= dbconnect();
 		$req = $connexion->prepare($sql);
 		$req->execute();
 	}
 	function AjoutCategSpent($name){
-		$sql= "insert into categSpent values('%s')";
+		$sql= "insert into categSpent values(default,'%s')";
 		$sql= sprintf($sql,$name);
 		$connexion= dbconnect();
 		$req = $connexion->prepare($sql);
 		$req->execute();
 	}
-	function AjoutSpent($name,$idcategSpent,$spent,$theDate){
-		$sql= "insert into categSpent values('%s','%d','%d','%s')";
-		$sql= sprintf($sql,$name,$idcategSpent,$spent,$theDate);
+	function AjoutSpent($idcategSpent,$spent,$theDate){
+		$sql= "insert into spent values(default,'%d','%d','%s')";
+		$sql= sprintf($sql,$idcategSpent,$spent,$theDate);
 		$connexion= dbconnect();
 		$req = $connexion->prepare($sql);
 		$req->execute();
@@ -227,59 +227,52 @@
 	}
 
 	function UpdateUser($id,$email,$pswd,$status){
-		$sql= "update from user set email='%s',pswd=sha1('%s'),status='%d' where id='%d'";
+		$sql= "update  user set email='%s',pswd=sha1('%s'),status='%d' where id='%d'";
 		$sql= sprintf($sql,$email,$pswd,$status,$id);
 		$connexion= dbconnect();
 		$req = $connexion->prepare($sql);
 		$req->execute();
 	}
 	function UpdateTeaCategory($id,$name,$output){
-		$sql= "update from teaCategory set name='%s',output='%d' where id='%d'";
+		$sql= "update  teaCategory set name='%s',output='%d' where id='%d'";
 		$sql= sprintf($sql,$name,$output,$id);
 		$connexion= dbconnect();
 		$req = $connexion->prepare($sql);
 		$req->execute();
 	}
 	function UpdateParcel($id,$size,$idTeaCategory){
-		$sql= "update from parcel set size='%d',idTeaCategory='%d' where id='%d'";
+		$sql= "update  parcel set size='%d',idTeaCategory='%d' where id='%d'";
 		$sql= sprintf($sql,$size,$idTeaCategory,$id);
 		$connexion= dbconnect();
 		$req = $connexion->prepare($sql);
 		$req->execute();
 	}
 	function UpdatePicker($id,$name){
-		$sql= "update from picker set name='%d' where id='%d'";
+		$sql= "update  picker set name='%d' where id='%d'";
 		$sql= sprintf($sql,$name,$id);
 		$connexion= dbconnect();
 		$req = $connexion->prepare($sql);
 		$req->execute();
 	}
-	function UpdatePicking($idParcel,$qty,$theDate,$id){
-		$sql= "update from picking set idParcel='%d',qty='%d',theDate='%s' where id='%d'";
+	function UpdatePicking($id,$idParcel,$qty,$theDate){
+		$sql= "update  picking set idParcel='%d',qty='%d',theDate='%s' where id='%d'";
 		$sql= sprintf($sql,$idParcel,$qty,$theDate,$id);
 		$connexion= dbconnect();
 		$req = $connexion->prepare($sql);
 		$req->execute();
 	}
 	function UpdateCategSpent($id,$name){
-		$sql= "update from categSpent set name='%s' where id='%d'";
+		$sql= "update  categSpent set name='%s' where id='%d'";
 		$sql= sprintf($sql,$name,$id);
 		$connexion= dbconnect();
 		$req = $connexion->prepare($sql);
 		$req->execute();
 	}
 	function UpdateSpent($id,$name,$idcategSpent,$spent,$theDate){
-		$sql= "update from spent set idcategSpent='%d',spent='%d',theDate='%s' where id='%d'";
+		$sql= "update  spent set idcategSpent='%d',spent='%d',theDate='%s' where id='%d'";
 		$sql= sprintf($sql,$name,$idcategSpent,$spent,$theDate,$id);
 		$connexion= dbconnect();
 		$req = $connexion->prepare($sql);
 		$req->execute();
 	}
-	// function update($id,$date,$produit,$quantite,$prixU,$total){
-	// 	$sql= "update from vente set date_vente='%s',nomProd='%s',quantite='%d',prixU='%d',total='%d'  where idVente='%d'";
-	// 	$sql= sprintf($sql,$id,$date,$produit,$quantite,$prixU,$total);
-	// 	$connexion= dbconnect();
-	// 	$req = $connexion->prepare($sql);
-	// 	$req->execute();
-	// dqdq}
-?>
+	

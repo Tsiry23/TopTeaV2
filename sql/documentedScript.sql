@@ -12,7 +12,7 @@ create table teaCategory (
     id int primary key  auto_increment,
     name varchar(30) not null,
     output double, --rendement
-    CHECK (output>=0)
+    CHECK (output>=0)rendement
 );
 
 create table parcel (
