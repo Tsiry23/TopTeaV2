@@ -4,6 +4,7 @@
     if ($_GET["mod"]=="c")
     {
         AjoutPicker($_GET["name"]);
+        
     }
     else if ($_GET["mod"]=="d")
     {

@@ -14,6 +14,7 @@
 
   <link href="../assets/" rel="stylesheet">
   <link href="../assets//fa/css/all.css" rel="stylesheet">
+
 </head>
 <style type="text/css">
   body{
@@ -71,7 +72,6 @@
                   <div class="modal fade" id="ins" tabindex="-1" role="dialog">
                     <div class="modal-dialog" role="document">
                       <div class="modal-content">
-                        
                       <div class="modal-header">  
                         <button type="button" class="close" data-dismiss="modal">x</button>
                         <h3 class="myModalLabel">Ajout Parcelle</h3>
