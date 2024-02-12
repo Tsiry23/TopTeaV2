@@ -40,7 +40,7 @@ font-size: 13px;
 text-decoration: none;
 margin: 15px 0 10px;
 }
-.container button {
+.fbtn-orange {
     background-color: #F39F5A;
     color: #fff;
     font-size: 12px;
@@ -53,11 +53,6 @@ margin: 15px 0 10px;
     margin-top: 10px;
     cursor: pointer;
 }
-
-.container button.hidden {
-    background-color: transparent;  
-    border-color: #fff;
-}
     
 .container form {
     background-color: #fff;
@@ -69,7 +64,7 @@ margin: 15px 0 10px;
     height: 100%;
 }
 
-.container input {
+.formInput {
     background-color: #eee;
     border: none;
     margin: 8px 0;
