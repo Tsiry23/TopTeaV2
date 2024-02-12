@@ -1,6 +1,8 @@
 <?php
     include("../inc/fonction.php");
+
     $listCatTea=getAllTeaCategory();
+    $listParcel=getAllParcel();
 ?>
 <!DOCTYPE html>
 <html>
@@ -109,16 +111,21 @@
         </nav><br>
         <div class="row-fluid boite">
           <!-- a boucler -->
-      		<div class="panel panel-default parcel">
-            <div class="panel-body" >
-              <div class="form-group">
-                <input class="form-control" placeholder="size" type="text">
-              </div>
-              <div class="form-group">
-                <input class="form-control" type="date">
-              </div>
-      			</div>
-      		</div>
+            <?php for ($i=0; $i!=count($listParcel); $i++) { ?>
+            <div class="panel panel-default parcel">
+                <div class="panel-body" >
+                <div class="form-group">
+                    <p>Taille: <?php echo $listParcel[$i]["size"] ?></p>
+                </div>
+                <div class="form-group">
+                    <p>Début plantation: <?php echo $listParcel[$i]["startDate"] ?></p>
+                </div>
+                <div class="form-group">
+                    <p>Type de plantation: <?php echo getTeaCategoryById($listParcel[$i]["idTeaCategory"])[0]["name"]; ?></p>
+                </div>
+                </div>
+            </div> 
+            <?php } ?>
          
         </div>
       </div>
