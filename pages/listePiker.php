@@ -1,3 +1,8 @@
+<?php
+    include("../inc/fonction.php");
+    $listePiker=getAllPicker();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,7 +66,6 @@
             <tr>
               <th>id</th>
               <th>nom</th>
-              <th>salaire</th>
               <th><button type="button" class="navbar-right btn btn-info" data-toggle="modal" data-target="#ins">+ Add</button></th>
                 <!-- Modal -->
                   <div class="modal fade" id="ins" tabindex="-1" role="dialog">
@@ -73,17 +77,10 @@
                         <h3 class="myModalLabel">Ajout Parcelle</h3>
                       </div>
                       <div class="modal-body text-center">
-                        <form action="">
+                    <form action="../controllers/CrudPiker.php" method="get">
                           <div class="form-group">
-                            <input class="form-control" placeholder="size" type="text">
-                          </div>
-                          <div class="form-group">
-                            <input class="form-control" type="date">
-                          </div>
-                          <div class="form-group">
-                            <select class="form-control" name="" id="">
-                              <option value="">gogo</option>
-                            </select>
+                            <input class="form-control" placeholder="name" type="text" name="name">
+                            <input type="" hidden value="c" name="mod">
                           </div>
                       </div>
                       <div class="modal-footer">
@@ -95,12 +92,13 @@
                   </div>
                 <!-- Modal -->  
             </tr>
-            <tr>
-              <td>1</td>
-              <td>momo</td>
-              <td>500.000</td>
-              <td><a class="btn btn-warning" href="">edit</a> <a class="btn btn-danger" href="">delete</a></td>
-            </tr>
+            <?php for ($i=0; $i < count($listePiker); $i++) { ?> 
+              <tr>
+                <td><?php echo $listePiker[$i]['id'] ?></td>
+                <td><?php echo $listePiker[$i]['name'] ?></td>
+                <td><a class="btn btn-danger" href="../controllers/CrudPiker.php?mod=d&id=<?php echo $listePiker[$i]['id'] ?>">delete</a></td>  
+              </tr>
+              <?php }?>
           </table>
         </div>
       </div>
