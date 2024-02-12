@@ -17,7 +17,7 @@ create table teaCategory (
 );
 
 create table parcel (
-    id int primary key  auto_increment,
+    id int primary key auto_increment,
     size double ,
     idTeaCategory int REFERENCES teaCat,
     startDate date not null
