@@ -1,0 +1,45 @@
+body{
+
+}
+.navbar-header a{
+	color: black;
+}
+.icon-bar{
+	background: black;
+}
+ul li a{
+	color: black;
+}
+.classe2{
+	height: 80vh;
+}
+.case1{
+	height: 40%;
+}
+.case2{
+	background: red;
+	height: 40%;
+}
+.navbar-right li a{
+	font-size: 10px;
+	font-weight: bold;
+}
+@media screen and (max-width: 600px) {
+	.colo{
+		background: white;
+		border-radius: 20px;
+		height: 20px;
+	}
+	.p1 h1{
+		font-size: 20px;
+	}
+  	.p1{
+  		height: 15vh;
+		padding: 10px;
+	}
+	.p2{
+		height: 40vh;
+		padding: 10vh;
+	}
+}
+ 
