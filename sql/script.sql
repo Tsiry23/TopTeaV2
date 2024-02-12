@@ -62,7 +62,7 @@ INSERT INTO parcel (size, idTeaCategory, startDate) VALUES (60.2, 1, '2024-02-12
 INSERT INTO picker (name) VALUES ('Jean Dupont');
 INSERT INTO picker (name) VALUES ('Janot babu');
 INSERT INTO picker (name) VALUES ('Gerak garou');
-INSERT INTO picking (idParcel, qty, theDate) VALUES (1, 15.5, '2024-02-12');
+INSERT INTO picking (idParcel, qty, theDate) VALUES (1  , 15.5, '2024-02-12');
 INSERT INTO salary (salary, salaryDate) VALUES (5000, '2024-02-01');
 INSERT INTO categSpent (name) VALUES ('Transport');
 INSERT INTO spent (idcategSpent, spent, theDate) VALUES (1, 50.75, '2024-02-12');
