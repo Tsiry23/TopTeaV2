@@ -1,3 +1,7 @@
+<?php
+    include("../inc/fonction.php");
+    $listCatTea=getAllTeaCategory();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -77,19 +81,18 @@
                       <div class="form-group">
                         <input class="form-control" placeholder="size" type="text" name="size">
                       </div>
-                      <span for="">date :</span>
+                      <span for="">Date :</span>
                   <div class="modal-body text-center">
-                  <form action="../controllers/insertParcelle.php">
-                      <div class="form-group">
-                        <input class="form-control" type="date" name="date" name="size">
-                      </div>
                       <div class="form-group">
                         <input class="form-control" type="date" name="" placeholder="labelle" name="date">
                       </div>
-                      <span for="">categorie :</span>
+                      <span for="">Categorie :</span>
                       <div class="form-group">
                         <select class="form-control" name="teaCategory" id="">
                           <option value="">gogo</option>
+                          <?php for ($i=0; $i!=count($listCatTea); $i++) { ?>
+                            <option value="<?php echo $listCatTea[$i]["id"]; ?>"><?php echo $listCatTea[$i]["name"]; ?></option>
+                          <?php } ?>
                         </select>
                       </div>
                   </div>
