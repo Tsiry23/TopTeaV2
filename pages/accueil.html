@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../assets/js/jquery.min.js"></script>
+    <title>Document</title>
+    <link rel="stylesheet" href="../assets/css/acc.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+<!-- icon -->
+    <link rel="stylesheet" href="../assets/fa/css/all.css">
+    <link rel="stylesheet" href="../assets/fa/css/all.min.css">
+    
+    
+    <script src="../assets/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container-fluid">
+		<div class="row corps">
+<!-- menu -->
+        <div class="col-md-1 dsh">
+            <ul class="nav nav-tabs left">
+                <li ><a href="index.php">Piker</a></li>
+                <li ><a href="">Gestion</a></li>
+                <li ><a href=""><i class="fa  fa-info-circle"></i></a></li>
+                <li ><a href=""><i class="fa fa-picture-o"></i></a></li>
+                <li ><a href=""><i class="fa fa-gear"></i></a></li>
+            </ul>
+        </div>
+<!-- PRODUIT -->
+        <div class="col-md-11">
+            <div class="row all">
+                <form action="search.php" method="get" class="navbar-right btt">
+                    <input style="padding-left: 10px;" type="" class="search" placeholder="search food,etc.." name="Motcle">
+                    <button type="submit" class="search"><i class="fa  fa-search"></i></button>
+                </form>
+                <ul class="nav nav-tabs">
+                    <li class="bg-default"><a href="index.php">Kaly</a></li>
+                    <li class="bg-default"><a href="">Jeux</a></li>
+                    </li>
+                </ul>
+                <br>
+                    <div class="col-md-4 form-group produit">
+                            <a href="favoris.php?id=<?php echo $i; ?>">
+                                <i class="fa  fa-heart-o navbar-right fav"></i>
+                            </a>
+                            <a href="favoris.php?id=<?php echo $i; ?>">
+                                    <i style="color: red" class="fa  fa-heart navbar-right fav"></i>
+                                </a>
+
+                        <a href="index.php?id=<?php echo $i; ?>">
+                        <img src="img/<?php echo $i ?>.jpeg"><br><br>
+                        </a>
+                        <h4 style="text-align: left;"><?php echo $produits[$i]['nom']; ?></h4>
+                        <p style="text-align: right; margin-top: -30px;"><?php echo $produits[$i]['prix']; ?> Ar</p>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
+<!-- caisse -->
+		</div>
+	</div>
+</div>
+</body>
+</html>
