@@ -28,7 +28,6 @@
 	}
 	function getAllTeaCategory($id){
 		$sql= "select * from teaCategory";
-		$req = $connexion->prepare($sql);
 		$req->execute();
 		$retour = $req->fetchAll(PDO::FETCH_ASSOC);
 		return $retour;
@@ -123,7 +122,7 @@
 
 	function AjoutUser($email,$pswd,$status){
 		$sql= "insert into vente values('%s',sha1('%s'),'%d')";
-		$sql= sprintf($email,$pswd,$status);
+		$sql= sprintf($sql,$email,$pswd,$status);
 		$connexion= dbconnect();
 		$req = $connexion->prepare($sql);
 		$req->execute();
@@ -131,47 +130,47 @@
 
 	function AjoutTeaCategory($name,$output){
 		$sql= "insert into teaCategory values('%s','%d')";
-		$sql= sprintf($name,$output);
+		$sql= sprintf($sql,$name,$output);
 		$connexion= dbconnect();
 		$req = $connexion->prepare($sql);
 		$req->execute();
 	}
 	function AjoutParcel($size,$idTeaCategory){
 		$sql= "insert into parcel values('%d','%d')";
-		$sql= sprintf($size,$idTeaCategory);
+		$sql= sprintf($sql,$size,$idTeaCategory);
 		$connexion= dbconnect();
 		$req = $connexion->prepare($sql);
 		$req->execute();
 	}
 	function AjoutPicker($name){
 		$sql= "insert into picker values('%s')";
-		$sql= sprintf($name);
+		$sql= sprintf($sql,$name);
 		$connexion= dbconnect();
 		$req = $connexion->prepare($sql);
 		$req->execute();
 	}
 	function AjoutCategSpent($name){
 		$sql= "insert into categSpent values('%s')";
-		$sql= sprintf($name);
+		$sql= sprintf($sql,$name);
 		$connexion= dbconnect();
 		$req = $connexion->prepare($sql);
 		$req->execute();
 	}
 	function AjoutSpent($name,$idcategSpent,$spent,$theDate){
 		$sql= "insert into categSpent values('%s','%d','%d','%s')";
-		$sql= sprintf($name,$idcategSpent,$spent,$theDate);
+		$sql= sprintf($sql,$name,$idcategSpent,$spent,$theDate);
 		$connexion= dbconnect();
 		$req = $connexion->prepare($sql);
 		$req->execute();
 	}
 
-	// function supp($id){
-	// 	$sql= "delete from vente where idVente='%d'";
-	// 	$sql= sprintf($sql,$id);
-	// 	$connexion= dbconnect();
-	// 	$req = $connexion->prepare($sql);
-	// 	$req->execute();
-	// }
+	function suppUser($id){
+		$sql= "delete from user where id='%d'";
+		$sql= sprintf($sql,$id);
+		$connexion= dbconnect();
+		$req = $connexion->prepare($sql);
+		$req->execute();
+	}
 	// function getVenteAt($id){
 	// 	$sql= "select * from vente w
 	// 	here idVente='%d'";
