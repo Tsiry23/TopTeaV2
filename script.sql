@@ -11,7 +11,7 @@ create table user (
 create table teaCategory ( 
     id int primary key  auto_increment,
     name varchar(30) not null,
-    output double,
+    output double default 15,
     CHECK (output>=0)
 );
 
@@ -54,6 +54,3 @@ create table spent (
     CHECK (spent>=0),
     Foreign key (idcategSpent) REFERENCES categSpent(id)
 );
-
-insert into user values (default,'jean@gmail.com',sha1('1234'),0);
-insert into user values (default,'tsyjean@gmail.com',sha1('4321'),1);
