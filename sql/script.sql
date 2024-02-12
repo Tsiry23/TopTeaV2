@@ -56,8 +56,7 @@ create table spent (
     Foreign key (idcategSpent) REFERENCES categSpent(id)
 );
 
-INSERT INTO user (email, pswd, status) VALUES ('exemple@email.com', 'motdepasse123', 1);
-INSERT INTO teaCategory (name, output) VALUES ('Thé vert', 20.5);
+INSERT INTO teaCategory (name, space ) VALUES ('Thé vert', 1.5);
 INSERT INTO parcel (size, idTeaCategory, startDate) VALUES (10.2, 1, '2024-02-12');
 INSERT INTO picker (name) VALUES ('Jean Dupont');
 INSERT INTO picking (idParcel, qty, theDate) VALUES (1, 15.5, '2024-02-12');
@@ -65,5 +64,7 @@ INSERT INTO salary (salary, salaryDate) VALUES (5000, '2024-02-01');
 INSERT INTO categSpent (name) VALUES ('Transport');
 INSERT INTO spent (idcategSpent, spent, theDate) VALUES (1, 50.75, '2024-02-12');
 
-
+insert into user values (default,'jean@gmail.com','1234',1);
+insert into user values (default,'tsyjean@gmail.com','4321',0);
+INSERT INTO user (email, pswd, status) VALUES ('exemple@email.com', 'motdepasse123', 1);
 --172.20.0.167

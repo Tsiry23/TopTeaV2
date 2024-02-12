@@ -1,6 +1,8 @@
 <?php
     include("../inc/fonction.php");
+
     $listCatTea=getAllTeaCategory();
+    $listParcel=getAllParcel();
 ?>
 <!DOCTYPE html>
 <html>
@@ -77,19 +79,19 @@
                     <h3 class="myModalLabel">Ajout Parcelle</h3>
                   </div>
                   <div class="modal-body">
-                  <form action="../controllers/insertParcelle.php">
+                  <form action="../controllers/CrudParcelle.php" method="get">
+                        <input type="hidden" name="mod" value="c">
                       <div class="form-group">
                         <input class="form-control" placeholder="size" type="text" name="size">
                       </div>
                       <span for="">Date :</span>
                   <div class="modal-body text-center">
                       <div class="form-group">
-                        <input class="form-control" type="date" name="" placeholder="labelle" name="date">
+                        <input class="form-control" type="date" placeholder="labelle" name="date">
                       </div>
                       <span for="">Categorie :</span>
                       <div class="form-group">
-                        <select class="form-control" name="teaCategory" id="">
-                          <option value="">gogo</option>
+                        <select class="form-control" name="teaCategory">
                           <?php for ($i=0; $i!=count($listCatTea); $i++) { ?>
                             <option value="<?php echo $listCatTea[$i]["id"]; ?>"><?php echo $listCatTea[$i]["name"]; ?></option>
                           <?php } ?>
@@ -109,16 +111,21 @@
         </nav><br>
         <div class="row-fluid boite">
           <!-- a boucler -->
-      		<div class="panel panel-default parcel">
-            <div class="panel-body" >
-              <div class="form-group">
-                <input class="form-control" placeholder="size" type="text">
-              </div>
-              <div class="form-group">
-                <input class="form-control" type="date">
-              </div>
-      			</div>
-      		</div>
+            <?php for ($i=0; $i!=count($listParcel); $i++) { ?>
+            <div class="panel panel-default parcel">
+                <div class="panel-body" >
+                <div class="form-group">
+                    <p>Taille: <?php echo $listParcel[$i]["size"] ?></p>
+                </div>
+                <div class="form-group">
+                    <p>Début plantation: <?php echo $listParcel[$i]["startDate"] ?></p>
+                </div>
+                <div class="form-group">
+                    <p>Type de plantation: <?php echo getTeaCategoryById($listParcel[$i]["idTeaCategory"])[0]["name"]; ?></p>
+                </div>
+                </div>
+            </div> 
+            <?php } ?>
          
         </div>
       </div>
