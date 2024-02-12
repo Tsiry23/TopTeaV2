@@ -2,6 +2,15 @@
 	
 	include('connexion.php');
 	
+	function login ($email, $pwd) //retourne null si l'user n'existe pas
+	{
+		$sql="select * from user where email=? and pswd=sha1(?)";
+		$connexion= dbconnect();
+		$req = $connexion->prepare($sql);
+		$req->execute(array($email,$pwd));
+		$retour = $req->fetchAll(PDO::FETCH_ASSOC);
+		return $retour;
+	}
 	function getUser($iduser){
 		$sql= "select * from user where id='%d'";
 		$sql= sprintf($sql,$iduser);
@@ -11,9 +20,10 @@
 		$retour = $req->fetchAll(PDO::FETCH_ASSOC);
 		return $retour;
 	}
-	function getTeaCategoryById($id){
+	function getTeaCategoryById($id) {
 		$sql= "select * from teaCategory where id='%d'";
 		$sql= sprintf($sql,$id);
+		$connexion= dbconnect();
 		$req = $connexion->prepare($sql);
 		$req->execute();
 		$retour = $req->fetchAll(PDO::FETCH_ASSOC);
@@ -21,6 +31,8 @@
 	}
 	function getAllTeaCategory($id){
 		$sql= "select * from teaCategory";
+		$connexion= dbconnect();
+		$req = $connexion->prepare($sql);
 		$req->execute();
 		$retour = $req->fetchAll(PDO::FETCH_ASSOC);
 		return $retour;
