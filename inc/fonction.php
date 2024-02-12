@@ -141,9 +141,9 @@
 		$req->execute();
 	}
 
-	function AjoutTeaCategory($name,$output){
-		$sql= "insert into teaCategory values(default,'%s','%d')";
-		$sql= sprintf($sql,$name,$output);
+	function AjoutTeaCategory($name,$output,$space) { //space pour espace occupée par un pied
+		$sql= "insert into teaCategory values(default,'%s',default,'%d')";
+		$sql= sprintf($sql,$name,$space);
 		$connexion= dbconnect();
 		$req = $connexion->prepare($sql);
 		$req->execute();
