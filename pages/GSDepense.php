@@ -78,19 +78,19 @@
                         <h3 class="myModalLabel">Depense</h3>
                       </div>
                       <div class="modal-body text-center">
-                        <form action="">
+                        <form action="../controllers/CrudDepense.php" method="get">
                           <div class="form-group">
-                            <input class="form-control" placeholder="size" type="text" name="spent">
+                            <input class="form-control" placeholder="spent" type="text" name="spent">
                           </div>
                           <div class="form-group">
                             <input class="form-control" type="date" name="theDate">
                           </div>
                           <div class="form-group">
-                            <select class="form-control" name="categories" >
+                            <select class="form-control" name="categories">
                             <?php 
                                 $alllCategories=getAllTeaCategory();
                                 for ($i=0; $i < count($alllCategories); $i++) {?>
-                              <option value="<?php echo $i+1?>"><?php $alllCategories[$i]['name'] ?></option>
+                              <option value="<?php echo $alllCategories[$i]['id']?>"><?php echo $alllCategories[$i]['name'] ?></option>
                               <?php } ?>
                             </select>
                           </div>
@@ -104,17 +104,17 @@
                   </div>
                 <!-- Modal -->  
             </tr>
-            <tr>
             <?php 
                 $AllDepense=getAllSpent();
-               for ($i=0; $i < count($AllDepense); $i++) { ?>
+                for ($i=0; $i < count($AllDepense); $i++) { ?>
+              <tr>
                 <td><?php echo $AllDepense[$i]['id']?></td>
                 <td><?php echo $AllDepense[$i]['idcategSpent']?></td>
                 <td><?php echo $AllDepense[$i]['spent']?></td>
                 <td><?php echo $AllDepense[$i]['theDate']?></td>
-                <td><a class="btn btn-warning" href="">edit</a> <a class="btn btn-danger" href="">delete</a></td>  
+                <td><a class="btn btn-warning" href="../controllers/CrudDepense.php?id=<?php echo $AllDepense[$i]['id']?>">edit</a> <a class="btn btn-danger" href="../controllers/CrudDepense.php?mode=d&id=<?php echo $AllDepense[$i]['id']?>">delete</a></td>  
+              </tr>
               <?php } ?>
-            </tr>
           </table>
         </div>
       </div>
