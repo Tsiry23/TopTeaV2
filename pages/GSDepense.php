@@ -1,3 +1,6 @@
+<?php 
+  include('../inc/fonction.php');
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -72,19 +75,23 @@
                         
                       <div class="modal-header">  
                         <button type="button" class="close" data-dismiss="modal">x</button>
-                        <h3 class="myModalLabel">Ajout Parcelle</h3>
+                        <h3 class="myModalLabel">Depense</h3>
                       </div>
                       <div class="modal-body text-center">
                         <form action="">
                           <div class="form-group">
-                            <input class="form-control" placeholder="size" type="text">
+                            <input class="form-control" placeholder="size" type="text" name="spent">
                           </div>
                           <div class="form-group">
-                            <input class="form-control" type="date">
+                            <input class="form-control" type="date" name="theDate">
                           </div>
                           <div class="form-group">
-                            <select class="form-control" name="" id="">
-                              <option value="">gogo</option>
+                            <select class="form-control" name="categories" >
+                            <?php 
+                                $alllCategories=getAllTeaCategory();
+                                for ($i=0; $i < count($alllCategories); $i++) {?>
+                              <option value="<?php echo $i+1?>"><?php $alllCategories[$i]['name'] ?></option>
+                              <?php } ?>
                             </select>
                           </div>
                       </div>
@@ -98,11 +105,15 @@
                 <!-- Modal -->  
             </tr>
             <tr>
-              <td>1</td>
-              <td>momo</td>
-              <td>500.000</td>
-              <td>21-05-24</td>
-              <td><a class="btn btn-warning" href="">edit</a> <a class="btn btn-danger" href="">delete</a></td>
+            <?php 
+                $AllDepense=getAllSpent();
+               for ($i=0; $i < count($AllDepense); $i++) { ?>
+                <td><?php echo $AllDepense[$i]['id']?></td>
+                <td><?php echo $AllDepense[$i]['idcategSpent']?></td>
+                <td><?php echo $AllDepense[$i]['spent']?></td>
+                <td><?php echo $AllDepense[$i]['theDate']?></td>
+                <td><a class="btn btn-warning" href="">edit</a> <a class="btn btn-danger" href="">delete</a></td>  
+              <?php } ?>
             </tr>
           </table>
         </div>

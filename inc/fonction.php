@@ -114,8 +114,16 @@
 		return $retour;
 	}
 	
-	
-	function getSpent($idSpent){
+	function getAllSpent(){
+		$sql= "select * from spent";
+		$connexion= dbconnect();
+		$req = $connexion->prepare($sql);
+		$req->execute();
+		$retour = $req->fetchAll(PDO::FETCH_ASSOC);
+		return $retour;
+	}
+
+	function getSpentById($idSpent){
 		$sql= "select * from spent where id='%d'";
 		$sql= sprintf($sql,$idSpent);
 		$connexion= dbconnect();
