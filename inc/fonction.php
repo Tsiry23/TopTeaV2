@@ -276,3 +276,26 @@
 		$req->execute();
 	}
 	
+	function getSalaryByDate($dateGiven) {
+		// Connexion à la base de données
+		$connexion = dbconnect();
+
+		// Requête SQL pour sélectionner les données
+		$sql = "SELECT * FROM salary WHERE salaryDate < :dateGiven ORDER BY salaryDate DESC LIMIT 1";
+
+		// Préparation de la requête
+		$stmt = $connexion->prepare($sql);
+
+		// Liaison des paramètres
+		$stmt->bindParam(':dateGiven', $dateGiven);
+
+		// Exécution de la requête
+		$stmt->execute();
+
+		// Récupération des résultats
+		$result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+		// Retourne le résultat
+		return $result;
+	}
+?>
