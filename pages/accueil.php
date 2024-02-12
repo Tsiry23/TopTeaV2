@@ -77,29 +77,62 @@
                     <h3 class="myModalLabel">Ajout Parcelle</h3>
                   </div>
                   <div class="modal-body">
-                  <form action="../controllers/insertParcelle.php">
-                      <div class="form-group">
-                        <input class="form-control" placeholder="size" type="text" name="size">
-                      </div>
-                      <span for="">Date :</span>
-                  <div class="modal-body text-center">
-                      <div class="form-group">
-                        <input class="form-control" type="date" name="" placeholder="labelle" name="date">
-                      </div>
-                      <span for="">Categorie :</span>
-                      <div class="form-group">
-                        <select class="form-control" name="teaCategory" id="">
-                          <option value="">gogo</option>
-                          <?php for ($i=0; $i!=count($listCatTea); $i++) { ?>
-                            <option value="<?php echo $listCatTea[$i]["id"]; ?>"><?php echo $listCatTea[$i]["name"]; ?></option>
-                          <?php } ?>
-                        </select>
-                      </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="submit" class="btn btn-default">valider</button>
-                  </div>
-                </form>
+                  <?php if (!isset($_GET["mod"])) { 
+                        $parcel=getParcelById($_GET["id"])[0];
+                    ?>
+                    <form action="../controllers/CrudParcelle.php" method="get">
+                          <input type="hidden" name="mod" value="u">
+                          <input type="hidden" name="id" value="<?php echo $_GET["id"]; ?>">
+                        <div class="form-group">
+                          <input class="form-control" placeholder="size" type="text" name="size" value="<?php echo $parcel["size"]; ?>">
+                        </div>
+                        <span for="">Date :</span>
+                    <div class="modal-body text-center">
+                        <div class="form-group">
+                          <input class="form-control" type="date" placeholder="labelle" name="date" value="<?php echo $parcel["startDate"]; ?>">
+                        </div>
+                        <span for="">Categorie :</span>
+                        <div class="form-group">
+                          <select class="form-control" name="teaCategory">
+                            <?php for ($i=0; $i!=count($listCatTea); $i++) { ?>
+                                <?php if ($listCatTea[$i]["id"]==$parcel["idTeaCategory"]) { ?>
+                                    <option value="<?php echo $listCatTea[$i]["id"]; ?>" selected><?php echo $listCatTea[$i]["name"]; ?></option>
+                                <?php } else { ?>
+                                <option value="<?php echo $listCatTea[$i]["id"]; ?>" selected><?php echo $listCatTea[$i]["name"]; ?></option>
+                            <?php } ?>
+                            <?php } ?>
+                          </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="submit" class="btn btn-default">valider</button>
+                    </div>
+                  </form>
+                  <?php } else { ?>
+                    <form action="../controllers/CrudParcelle.php" method="get">
+                          <input type="hidden" name="mod" value="u">
+                        <div class="form-group">
+                          <input class="form-control" placeholder="size" type="text" name="size">
+                        </div>
+                        <span for="">Date :</span>
+                    <div class="modal-body text-center">
+                        <div class="form-group">
+                          <input class="form-control" type="date" placeholder="labelle" name="date">
+                        </div>
+                        <span for="">Categorie :</span>
+                        <div class="form-group">
+                          <select class="form-control" name="teaCategory">
+                            <?php for ($i=0; $i!=count($listCatTea); $i++) { ?>
+                              <option value="<?php echo $listCatTea[$i]["id"]; ?>"><?php echo $listCatTea[$i]["name"]; ?></option>
+                            <?php } ?>
+                          </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="submit" class="btn btn-default">valider</button>
+                    </div>
+                  </form>
+                <?php } ?>
                   </div>
                 </div>
               </div>
@@ -109,16 +142,24 @@
         </nav><br>
         <div class="row-fluid boite">
           <!-- a boucler -->
-      		<div class="panel panel-default parcel">
-            <div class="panel-body" >
-              <div class="form-group">
-                <input class="form-control" placeholder="size" type="text">
-              </div>
-              <div class="form-group">
-                <input class="form-control" type="date">
-              </div>
-      			</div>
-      		</div>
+            <?php for ($i=0; $i!=count($listParcel); $i++) { ?>
+            <div class="panel panel-default parcel">
+                <div class="panel-body" >
+                <div class="form-group">
+                    <p>Taille: <?php echo $listParcel[$i]["size"] ?></p>
+                </div>
+                <div class="form-group">
+                    <p>Début plantation: <?php echo $listParcel[$i]["startDate"] ?></p>
+                </div>
+                <div class="form-group">
+                    <p>Type de plantation: <?php echo getTeaCategoryById($listParcel[$i]["idTeaCategory"])[0]["name"]; ?></p>
+                </div>
+                <div class="form-group">
+                    <a href="accueil.php?mod=u&id=<?php echo $listParcel[$i]["id"] ?>" class="btn btn-default">Modifier</a>
+                </div>
+                </div>
+            </div> 
+            <?php } ?>
          
         </div>
       </div>
