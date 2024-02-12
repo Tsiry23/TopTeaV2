@@ -5,10 +5,6 @@
     {
         AjoutPicker($_GET["name"]);
     }
-    else if ($_GET["mod"]=="u")
-    {
-
-    }
     else if ($_GET["mod"]=="d")
     {
         suppPicker($_GET["id"]);
