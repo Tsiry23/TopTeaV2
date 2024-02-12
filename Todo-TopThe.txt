@@ -1,0 +1,65 @@
+Admin qui se connecte à un site pour voir la variete des tea.
+Il y a un menu : (liste Piker, gestion depense/categorie).
+
+To-Do List :
+
+Avant 16h :
+ 	
+(ok)* login (
+  - formulaire (email , password)
+  - checklogin ( Ajax , php ) 
+  - redirection ver acceuil ( Ajax )	
+); 
+
+* Acceuil (
+  - menu lien(liste:piker: , gestion:depense,categorie:)
+  - CRUD( Parcel ) 
+  - liste parcel (Crud)
+  	- un parcel (
+	  - size
+      -
+	) 
+);
+
+
+ 
+
+
+
+
+    - index(login)
+        => Affichage(view)
+            * Formulaire de connexion(identifiant, mot de passe, bouton submit)
+            * CSS 15:49 29/01/2024
+        => Fonction
+        => Intégration
+            * Action formulaire vers traitement-login
+        => Données
+	    * 
+
+    - traitement-login
+        => Affichage(view)
+        => Fonction(model)
+            * checkLogin(identifiant et mot de passe)
+        => Intégration
+            * Récupération de l'identifiant et du mot de passe
+            * Appel de la fonction checkLogin
+            * redirection selon le résultat de checkLogin
+                if true  -> salaire
+                if false -> index
+        => Données
+            * Table employees(id,nom,email,motdepasse,date_embauche,taux_journalier)
+
+    - salaire
+        => Affichage(view)
+            * nom, prénom
+            * Nombre de jour ouvrable depuis l'embauche
+            * Total salaire
+        => Fonction(model)
+            * calculSalaire(nombreJourOuvrable,taux_journalier)
+            * calculNombreJourOuvrable(date_embauche,date_actuelle)
+        => Intégration
+            * Récupération infos salarié
+            * Appel de calculNombreJourOuvrable et calculSalaire
+            * Affichage des données
+        => Données
