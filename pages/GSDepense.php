@@ -1,3 +1,6 @@
+<?php 
+  include('../inc/fonction.php');
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,9 +38,9 @@
   	<div class="row">
       <div class="col-md-1 facture"><br>
         <ul class="nav nav-pills nav-stacked">
-            <li role="presentation"><a class="btn btn-default" id="mn" href="accueil.php"><i class="fa fa-home"></i></a></li>
-            <li role="presentation"><a class="btn btn-default" id="mn" href="listePiker.php"><i class="fa fa-list-alt"></i></a></li>
-            <li role="presentation"><a class="btn btn-default" id="mn" href="GSDepense.php"><i class="fa fa-database"></i></a></li>
+            <li role="presentation"><a class="btn btn-default" id="mn" href="accueil.html"><i class="fa fa-home"></i></a></li>
+            <li role="presentation"><a class="btn btn-default" id="mn" href="listePiker.html"><i class="fa fa-list-alt"></i></a></li>
+            <li role="presentation"><a class="btn btn-default" id="mn" href="GSDepense.html"><i class="fa fa-database"></i></a></li>
         </ul>
       </div>
       <div class="col-md-10">
@@ -56,12 +59,12 @@
           </div>
         </nav><br>
         <div class="row-fluid boite">
-          <p>liste picker</p>
+          <h3>Liste catégories dépense</h3>
           <table class="table" style="width: 100%;">
             <tr>
               <th>id</th>
-              <th>nom</th>
-              <th>montant</th>
+              <th>Nom categorie</th>
+
               <th><button type="button" class="navbar-right btn btn-info" data-toggle="modal" data-target="#ins">+ Add</button></th>
                 <!-- Modal -->
                   <div class="modal fade" id="ins" tabindex="-1" role="dialog">
@@ -70,20 +73,12 @@
                         
                       <div class="modal-header">  
                         <button type="button" class="close" data-dismiss="modal">x</button>
-                        <h3 class="myModalLabel">Ajout Parcelle</h3>
+                        <h3 class="myModalLabel">Depense</h3>
                       </div>
                       <div class="modal-body text-center">
-                        <form action="">
+                        <form action="../controllers/CrudDepense.php" method="get">
                           <div class="form-group">
-                            <input class="form-control" placeholder="size" type="text">
-                          </div>
-                          <div class="form-group">
-                            <input class="form-control" type="date">
-                          </div>
-                          <div class="form-group">
-                            <select class="form-control" name="" id="">
-                              <option value="">gogo</option>
-                            </select>
+                            <input class="form-control" placeholder="spent" type="text" name="name">
                           </div>
                       </div>
                       <div class="modal-footer">
@@ -95,12 +90,15 @@
                   </div>
                 <!-- Modal -->  
             </tr>
-            <tr>
-              <td>1</td>
-              <td>momo</td>
-              <td>500.000</td>
-              <td><a class="btn btn-warning" href="">edit</a> <a class="btn btn-danger" href="">delete</a></td>
-            </tr>
+            <?php 
+              $AllCatDepense=getCategSpent();
+              for ($i=0; $i < count($AllCatDepense); $i++) { ?>
+              <tr>
+                <td><?php echo $AllCatDepense[$i]["id"]?></td>
+                <td><?php echo $AllCatDepense[$i]["name"]?></td>
+                <td><a class="btn btn-danger" href="../controllers/CrudDepense.php?mod=d&id=<?php echo $AllCatDepense[$i]['id']?>">Delete</a></td>  
+              </tr>
+              <?php } ?>
           </table>
         </div>
       </div>
