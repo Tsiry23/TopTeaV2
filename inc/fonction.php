@@ -1,7 +1,7 @@
 <?php  
 	
 	//include('connexion.php');
-	include('connectionForDeploiement.php');
+	include('connectionForDeploiement.php'); 
 
 	function login ($email, $pwd) //retourne null si l'user n'existe pas
 	{

@@ -6,6 +6,6 @@ function dbconnect(){
         echo "Erreur de connexion : " . $e->getMessage();
         die();
     }
-    return $connexion;
+    return $connexion; 
 }
 ?>
