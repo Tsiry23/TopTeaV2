@@ -249,7 +249,7 @@
 	}
 	function UpdatePicker($id,$name){
 		$sql= "update from picker set name='%d' where id='%d'";
-		$sql= sprintf($sql,name,$id);
+		$sql= sprintf($sql,$name,$id);
 		$connexion= dbconnect();
 		$req = $connexion->prepare($sql);
 		$req->execute();
