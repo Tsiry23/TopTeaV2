@@ -15,5 +15,5 @@
         AjoutSpent($categories,$spent,$theDate);
     }
 
-    header('Location:../pages/GSDepense.php');
+    header('Location:../pages/GSDepense.php');e                                
 ?>
