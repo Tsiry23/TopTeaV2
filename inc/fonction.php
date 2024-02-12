@@ -298,4 +298,92 @@
 		// Retourne le résultat
 		return $result;
 	}
+
+	// Fonction pour calculer la quantité (qty) depuis la table picking où la date est comprise entre deux dates données
+	function calculateQtyBy2Date($startDate, $endDate) {
+		// Connexion à la base de données
+		$connexion = dbconnect();
+
+		// Requête SQL pour calculer la somme de la quantité (qty) entre deux dates données
+		$sql = "SELECT SUM(qty) AS totalQty FROM picking WHERE theDate BETWEEN :startDate AND :endDate";
+
+		// Préparation de la requête
+		$stmt = $connexion->prepare($sql);
+
+		// Liaison des paramètres
+		$stmt->bindParam(':startDate', $startDate);
+		$stmt->bindParam(':endDate', $endDate);
+
+		// Exécution de la requête
+		$stmt->execute();
+
+		// Récupération du résultat
+		$result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+		// Retourne le total de la quantité (qty)
+		return $result['totalQty'];
+	}
+
+	function calculateQtyGroupByIdParcel() {
+		// Connexion à la base de données
+		$connexion = dbconnect();
+
+		// Requête SQL pour calculer la somme de la quantité (qty) entre deux dates données
+		$sql = "SELECT SUM(qty) AS totalQty FROM picking group by idParcel ";
+
+		// Préparation de la requête
+		$stmt = $connexion->prepare($sql);
+
+		// Exécution de la requête
+		$stmt->execute();
+
+		// Récupération du résultat
+		$result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+		// Retourne le total de la quantité (qty)
+		return $result['totalQty'];
+	}
+
+	function calculateQtyByIdParcel($id) {
+		// Connexion à la base de données
+		$connexion = dbconnect();
+
+		// Requête SQL pour calculer la somme de la quantité (qty) entre deux dates données
+		$sql = "SELECT SUM(qty) AS totalQty FROM picking idParcel =".$id;
+
+		// Préparation de la requête
+		$stmt = $connexion->prepare($sql);
+
+		// Exécution de la requête
+		$stmt->execute();
+
+		// Récupération du résultat
+		$result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+		// Retourne le total de la quantité (qty)
+		return $result['totalQty'];
+	}
+
+	
+	// Fonction pour calculer la somme de tous les montants dépensés (spent)
+	function calculateTotalSpent() {
+		// Connexion à la base de données
+		$connexion = dbconnect();
+	
+		// Requête SQL pour calculer la somme de tous les montants dépensés (spent)
+		$sql = "SELECT SUM(spent) AS totalSpent FROM spent";
+	
+		// Préparation de la requête
+		$stmt = $connexion->prepare($sql);
+	
+		// Exécution de la requête
+		$stmt->execute();
+	
+		// Récupération du résultat
+		$result = $stmt->fetch(PDO::FETCH_ASSOC);
+	
+		// Retourne le total des montants dépensés (spent)
+		return $result['totalSpent'];
+	}	
+
 ?>
