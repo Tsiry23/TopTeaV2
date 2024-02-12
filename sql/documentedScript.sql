@@ -11,7 +11,8 @@ create table user (
 create table teaCategory ( 
     id int primary key  auto_increment,
     name varchar(30) not null,
-    output double, --rendement
+    output double default 10, --rendement
+    space double, --modif (espace occupée par pied)
     CHECK (output>=0)rendement
 );
 
@@ -54,3 +55,12 @@ create table spent ( --dépenses
     CHECK (spent>=0),
     Foreign key idcategSpent REFERENCES categSpent(id)
 );
+
+-- Exemple 1 : Thé vert avec un rendement de 85%
+INSERT INTO teaCategory (name, output) VALUES ('Thé vert', default);
+
+-- Exemple 2 : Thé noir avec un rendement de 75%
+INSERT INTO teaCategory (name, output) VALUES ('Thé noir', default);
+
+-- Exemple 3 : Tisane avec un rendement de 90%
+INSERT INTO teaCategory (name, output) VALUES ('Tisane', default);

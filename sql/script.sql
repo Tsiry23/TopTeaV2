@@ -11,7 +11,8 @@ create table user (
 create table teaCategory ( 
     id int primary key  auto_increment,
     name varchar(30) not null,
-    output double default 15,
+    output double default 10,
+    space double,
     CHECK (output>=0)
 );
 
