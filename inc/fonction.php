@@ -3,7 +3,7 @@
 	//include('connexion.php');
 	include('connectionForDeploiement.php');
 	
-	function login ($email, $pwd) //retourne null si l'user n'existe pas
+	function login ($email, $pwd) //retourne un array vide si inexistant
 	{
 		$sql="select * from user where email=? and pswd=sha1(?)";
 		$connexion= dbconnect();

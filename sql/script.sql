@@ -57,7 +57,7 @@ create table spent (
     Foreign key (idcategSpent) REFERENCES categSpent(id)
 );
 
-INSERT INTO user (email, pswd, status) VALUES ('exemple@email.com', 'motdepasse123', 1);
+INSERT INTO user (email, pswd, status) VALUES ('exemple@email.com', sha1('motdepasse123'), 1);
 INSERT INTO parcel (size, idTeaCategory, startDate) VALUES (10.2, 1, '2024-02-12');
 INSERT INTO parcel (size, idTeaCategory, startDate) VALUES (60.2, 1, '2024-02-12');
 INSERT INTO picker (name) VALUES ('Jean Dupont');
