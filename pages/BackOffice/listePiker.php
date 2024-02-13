@@ -1,5 +1,5 @@
 <?php
-    include("../inc/fonction.php");
+    include("../../inc/fonction.php");
     $listePiker=getAllPicker();
 ?>
 
@@ -7,13 +7,13 @@
 <html>
 <head>
 	<title>IkAly</title>
-	<script src="../assets/js/jquery.min.js"></script>
-	<script src="../assets/js/bootstrap.min.js"></script>
-	<link href="../assets/css/bootstrap.css" rel="stylesheet">
+	<script src="../../assets/js/jquery.min.js"></script>
+	<script src="../../assets/js/bootstrap.min.js"></script>
+	<link href="../../assets/css/bootstrap.css" rel="stylesheet">
   <link rel="icon" type="icon" href="img/logo.png">
 
-  <link href="../assets/" rel="stylesheet">
-  <link href="../assets//fa/css/all.css" rel="stylesheet">
+  <link href="../../assets/" rel="stylesheet">
+  <link href="../../assets//fa/css/all.css" rel="stylesheet">
 
 </head>
 <style type="text/css">
@@ -77,7 +77,7 @@
                         <h3 class="myModalLabel">Ajout cueilleur</h3>
                       </div>
                       <div class="modal-body text-center">
-                    <form action="../controllers/CrudPiker.php" method="get">
+                    <form action="../../controllers/CrudPiker.php" method="get">
                           <div class="form-group">
                             <input class="form-control" placeholder="name" type="text" name="name">
                             <input type="" hidden value="c" name="mod">
@@ -96,7 +96,7 @@
               <tr>
                 <td><?php echo $listePiker[$i]['id'] ?></td>
                 <td><?php echo $listePiker[$i]['name'] ?></td>
-                <td><a class="btn btn-danger" href="../controllers/CrudPiker.php?mod=d&id=<?php echo $listePiker[$i]['id'] ?>">delete</a></td>  
+                <td><a class="btn btn-danger" href="../../controllers/CrudPiker.php?mod=d&id=<?php echo $listePiker[$i]['id'] ?>">delete</a></td>  
               </tr>
               <?php }?>
           </table>

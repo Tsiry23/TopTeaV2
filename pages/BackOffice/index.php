@@ -1,5 +1,5 @@
 <?php
-    include("../inc/fonction.php");
+    include("../../inc/fonction.php");
     $defaultUser=getUser(1)[0];
 ?>
 <!DOCTYPE html>
@@ -8,12 +8,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
 </head>
 <body>
     <div class="container" id="container">
         <div class="base-container sign-in">
-            <form action="../controllers/traitLogin.php" method="post">
+            <form action="../../controllers/traitLogin.php" method="post">
                 <h1>log In</h1>
                     <input class="formInput" type="email" placeholder="Email" name="mail" value="<?php echo $defaultUser["email"] ?>">
                     <input class="formInput" type="password" placeholder="Password" name="pwd" value="<?php echo "motdepasse123" ?>">
@@ -23,7 +23,7 @@
         <div class="log-container">
             <div class="log">
                 <div class="log-panel log-right">
-                    <img src="../assets/logo1.png" alt="miandry" width="80" height="100">
+                    <img src="../../assets/logo1.png" alt="miandry" width="80" height="100">
                     <h1>TopTea</h1>
                     <p>Hello, Friend!</p>
                 </div>

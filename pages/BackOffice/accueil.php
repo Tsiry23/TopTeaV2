@@ -1,5 +1,5 @@
 <?php
-    include("../inc/fonction.php");
+    include("../../inc/fonction.php");
 
     $listCatTea=getAllTeaCategory();
     $listParcel=getAllParcel();
@@ -8,13 +8,13 @@
 <html>
 <head>
 	<title>IkAly</title>
-	<script src="../assets/js/jquery.min.js"></script>
-	<script src="../assets/js/bootstrap.min.js"></script>
-	<link href="../assets/css/bootstrap.css" rel="stylesheet">
+	<script src="../../assets/js/jquery.min.js"></script>
+	<script src="../../assets/js/bootstrap.min.js"></script>
+	<link href="../../assets/css/bootstrap.css" rel="stylesheet">
   <link rel="icon" type="icon" href="img/logo.png">
 
-  <link href="../assets/" rel="stylesheet">
-  <link href="../assets//fa/css/all.css" rel="stylesheet">
+  <link href="../../assets/" rel="stylesheet">
+  <link href="../../assets//fa/css/all.css" rel="stylesheet">
 </head>
 <style type="text/css">
   body{
@@ -52,6 +52,7 @@
         <ul class="nav nav-pills nav-stacked">
           <li role="presentation"><a class="btn btn-default" id="mn" href="accueil.php"><i class="fa fa-home"></i></a></li>
           <li role="presentation"><a class="btn btn-default" id="mn" href="listePiker.php"><i class="fa fa-list-alt"></i></a></li>
+          <li role="presentation"><a class="btn btn-default" id="mn" href="GSDepense.php"><i class="fa fa-database"></i></a></li>
           <li role="presentation"><a class="btn btn-default" id="mn" href="GSDepense.php"><i class="fa fa-database"></i></a></li>
       </ul>
       </div>
@@ -111,7 +112,7 @@
                     </div>
                   </form>
                   <?php } else { ?>
-                    <form action="../controllers/CrudParcelle.php" method="get">
+                    <form action="../../controllers/CrudParcelle.php" method="get">
                           <input type="hidden" name="mod" value="u">
                         <div class="form-group">
                           <input class="form-control" placeholder="size" type="text" name="size">

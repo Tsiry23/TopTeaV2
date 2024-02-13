@@ -1,20 +1,17 @@
-<?php
-    include("../inc/fonction.php");
-    $listePiker=getAllPicker();
+<?php 
+  include('../../inc/fonction.php');
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
 	<title>IkAly</title>
-	<script src="../assets/js/jquery.min.js"></script>
-	<script src="../assets/js/bootstrap.min.js"></script>
-	<link href="../assets/css/bootstrap.css" rel="stylesheet">
+	<script src="../../assets/js/jquery.min.js"></script>
+	<script src="../../assets/js/bootstrap.min.js"></script>
+	<link href="../../assets/css/bootstrap.css" rel="stylesheet">
   <link rel="icon" type="icon" href="img/logo.png">
 
-  <link href="../assets/" rel="stylesheet">
-  <link href="../assets//fa/css/all.css" rel="stylesheet">
-
+  <link href="../../assets/" rel="stylesheet">
+  <link href="../../assets//fa/css/all.css" rel="stylesheet">
 </head>
 <style type="text/css">
   body{
@@ -62,25 +59,26 @@
           </div>
         </nav><br>
         <div class="row-fluid boite">
-          <p>liste picker</p>
+          <h3>Liste catégories dépense</h3>
           <table class="table" style="width: 100%;">
             <tr>
               <th>id</th>
-              <th>nom</th>
+              <th>Nom categorie</th>
+
               <th><button type="button" class="navbar-right btn btn-info" data-toggle="modal" data-target="#ins">+ Add</button></th>
                 <!-- Modal -->
                   <div class="modal fade" id="ins" tabindex="-1" role="dialog">
                     <div class="modal-dialog" role="document">
                       <div class="modal-content">
+                        
                       <div class="modal-header">  
                         <button type="button" class="close" data-dismiss="modal">x</button>
-                        <h3 class="myModalLabel">Ajout cueilleur</h3>
+                        <h3 class="myModalLabel">Depense</h3>
                       </div>
                       <div class="modal-body text-center">
-                    <form action="../controllers/CrudPiker.php" method="get">
+                        <form action="../../controllers/CrudDepense.php" method="get">
                           <div class="form-group">
-                            <input class="form-control" placeholder="name" type="text" name="name">
-                            <input type="" hidden value="c" name="mod">
+                            <input class="form-control" placeholder="spent" type="text" name="name">
                           </div>
                       </div>
                       <div class="modal-footer">
@@ -92,20 +90,21 @@
                   </div>
                 <!-- Modal -->  
             </tr>
-            <?php for ($i=0; $i < count($listePiker); $i++) { ?> 
+            <?php 
+              $AllCatDepense=getCategSpent();
+              for ($i=0; $i < count($AllCatDepense); $i++) { ?>
               <tr>
-                <td><?php echo $listePiker[$i]['id'] ?></td>
-                <td><?php echo $listePiker[$i]['name'] ?></td>
-                <td><a class="btn btn-danger" href="../controllers/CrudPiker.php?mod=d&id=<?php echo $listePiker[$i]['id'] ?>">delete</a></td>  
+                <td><?php echo $AllCatDepense[$i]["id"]?></td>
+                <td><?php echo $AllCatDepense[$i]["name"]?></td>
+                <td><a class="btn btn-danger" href="../../controllers/CrudGSDepense.php?mod=d&id=<?php echo $AllCatDepense[$i]['id']?>">Delete</a></td>  
               </tr>
-              <?php }?>
+              <?php } ?>
           </table>
         </div>
       </div>
       <div class="row-fluid text-center" style="width: 100%;bottom:0;position: fixed;">
         <p>ETU002719 - ETU002575 - ETU002363</p>
       </div>
-      
   	</div>
   </div>
 </body>

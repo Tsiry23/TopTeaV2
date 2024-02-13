@@ -1,21 +1,17 @@
 <?php 
-  include('../inc/fonction.php');
-
-  if(!empty($_GET['mod'])){
-    $part= getParcelById($_GET['id']);
-  }
+  include('../../inc/fonction.php');
 ?>
 <!DOCTYPE html>
 <html>
 <head>
     <title>IkAly</title>
-    <script src="../assets/js/jquery.min.js"></script>
-    <script src="../assets/js/bootstrap.min.js"></script>
-    <link href="../assets/css/bootstrap.css" rel="stylesheet">
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/bootstrap.min.js"></script>
+    <link href="../../assets/css/bootstrap.css" rel="stylesheet">
     <link rel="icon" type="icon" href="img/logo.png">
 
-    <link href="../assets/" rel="stylesheet">
-    <link href="../assets//fa/css/all.css" rel="stylesheet">
+    <link href="../../assets/" rel="stylesheet">
+    <link href="../../assets/fa/css/all.css" rel="stylesheet">
 </head>
 <style type="text/css">
   body{
@@ -64,30 +60,20 @@
         </nav><br>
         <div class="row-fluid boite">
           <p>Formulaire de cueillette</p>
-          <form action="../controllers/CrudCueillette.php" method="get">
+          <form action="../../controllers/CrudDepense.php" method="get">
             <div class="form-group">
               <label for="idParcelle">ID Parcelle :</label>
               <select class="form-control" name="idParcelle" id="idParcelle">
                 <?php 
-                  $AllParcelle=getAllParcel();
+                  $AllParcelle=getCategSpent();
                   for ($i=0; $i < count($AllParcelle); $i++) { ?>
-                    <option value="<?php echo $AllParcelle[$i]['id']?>"><?php echo 'parcelle'.$AllParcelle[$i]['id']?></option>
+                    <option value="<?php echo $AllParcelle[$i]['id']?>"><?php echo $AllParcelle[$i]['name']?></option>
                 <?php  } ?>
               </select>
             </div>
             <div class="form-group">
-              <label for="quantite">Quantité :</label>
-              <input type="number" class="form-control" id="quantite" name="quantite" required>
-            </div>
-            <div class="form-group">
-              <label for="idPicker">ID Picker :</label>
-              <select class="form-control" name="idPicker" id="idPicker">
-              <?php 
-                  $AllPicker=getAllPicker();
-                  for ($i=0; $i < count($AllPicker); $i++) { ?>
-                    <option value="<?php echo $AllPicker[$i]['id']?>"><?php echo 'parcelle'.$AllPicker[$i]['name']?></option>
-                <?php  } ?>
-              </select>
+              <label for="val">Valeur :</label>
+              <input type="number" class="form-control" id="val" name="val" required min=0>
             </div>
             <div class="form-group">
               <label for="date">Date :</label>
