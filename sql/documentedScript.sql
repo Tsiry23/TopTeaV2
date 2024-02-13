@@ -25,9 +25,10 @@ create table parcel (
 
 create table picker ( --cueilleur
     id int primary key  auto_increment,
-    name varchar (40)
+    name varchar (40),
+    gender varchar(1), --m=homme et f=femme
+    dob date
 );
-
 
 create table picking ( --cueillette
     id int primary key  auto_increment,
