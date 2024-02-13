@@ -1,4 +1,7 @@
-
+<?php
+    include("../inc/fonction.php");
+    $defaultUser=getUser(1)[0];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,8 +15,8 @@
         <div class="base-container sign-in">
             <form action="../controllers/traitLogin.php" method="post">
                 <h1>log In</h1>
-                    <input class="formInput" type="email" placeholder="Email" name="mail">
-                    <input class="formInput" type="password" placeholder="Password" name="pwd">
+                    <input class="formInput" type="email" placeholder="Email" name="mail" value="<?php echo $defaultUser["email"] ?>">
+                    <input class="formInput" type="password" placeholder="Password" name="pwd" value="<?php echo "motdepasse123" ?>">
                     <button class="fbtn-orange" type="submit">Sign In</button> 
             </form>
         </div>

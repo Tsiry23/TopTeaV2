@@ -1,8 +1,9 @@
 <?php  
+
+	//include('connexion.php');
+	include('connectionForDeploiement.php');
 	
-	include('connexion.php');
-	
-	function login ($email, $pwd) //retourne null si l'user n'existe pas
+	function login ($email, $pwd) //retourne un array vide si inexistant
 	{
 		$sql="select * from user where email=? and pswd=sha1(?)";
 		$connexion= dbconnect();
@@ -154,9 +155,9 @@
 		$req = $connexion->prepare($sql);
 		$req->execute();
 	}
-	function AjoutPicking($idParcel,$qty,$theDate){
-		$sql= "insert into picking values(default,'%d','%s','%s')";
-		$sql= sprintf($sql,$idParcel,$qty,$theDate);
+	function AjoutPicking($idParcel,$qty,$idPicker,$theDate){
+		$sql= "insert into picking values(default,%d,%d,%d,'%s')";
+		$sql= sprintf($sql,$idParcel,$qty,$idPicker,$theDate);
 		$connexion= dbconnect();
 		$req = $connexion->prepare($sql);
 		$req->execute();
@@ -386,4 +387,13 @@
 		return $result['totalSpent'];
 	}	
 
+	function getPlantedQuantity ($idParcel)
+	{
+		$parcel=getParcelById($idParcel)[0];
+		$teaCategory=getTeaCategoryById($parcel["idTeaCategory"]);
+
+		$nbPieds=(int)($parcel["size"]/$teaCategory["space"]);
+
+		return $nbPieds;
+	}
 ?>

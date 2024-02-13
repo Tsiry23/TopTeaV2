@@ -17,7 +17,7 @@ create table teaCategory (
 );
 
 create table parcel (
-    id int primary key  auto_increment,
+    id int primary key auto_increment,
     size double ,
     idTeaCategory int REFERENCES teaCat,
     startDate date not null
@@ -33,6 +33,7 @@ create table picking (
     id int primary key  auto_increment,
     idParcel int REFERENCES parcel(id),
     qty double DEFAULT 0 ,
+    idPicker int,
     theDate date not null ,
     CHECK (qty>=0)
 );
@@ -56,7 +57,7 @@ create table spent (
     Foreign key (idcategSpent) REFERENCES categSpent(id)
 );
 
-INSERT INTO user (email, pswd, status) VALUES ('exemple@email.com', 'motdepasse123', 1);
+INSERT INTO user (email, pswd, status) VALUES ('exemple@email.com', sha1('motdepasse123'), 1);
 INSERT INTO parcel (size, idTeaCategory, startDate) VALUES (10.2, 1, '2024-02-12');
 INSERT INTO parcel (size, idTeaCategory, startDate) VALUES (60.2, 1, '2024-02-12');
 INSERT INTO picker (name) VALUES ('Jean Dupont');

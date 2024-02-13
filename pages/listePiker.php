@@ -74,7 +74,7 @@
                       <div class="modal-content">
                       <div class="modal-header">  
                         <button type="button" class="close" data-dismiss="modal">x</button>
-                        <h3 class="myModalLabel">Ajout Parcelle</h3>
+                        <h3 class="myModalLabel">Ajout cueilleur</h3>
                       </div>
                       <div class="modal-body text-center">
                     <form action="../controllers/CrudPiker.php" method="get">
