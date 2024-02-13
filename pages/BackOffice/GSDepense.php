@@ -79,7 +79,7 @@
                         <h3 class="myModalLabel">Depense</h3>
                       </div>
                       <div class="modal-body text-center">
-                        <form action="../../controllers/CrudDepense.php" method="get">
+                        <form action="../../controllers/CrudGSDepense.php" method="get">
                           <div class="form-group">
                             <input class="form-control" placeholder="spent" type="text" name="name">
                           </div>
