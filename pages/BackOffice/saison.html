@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>IkAly</title>
+    <title>TopSaison</title>
     <script src="../../assets/js/jquery.min.js"></script>
     <script src="../../assets/js/bootstrap.min.js"></script>
     <link href="../../assets/css/bootstrap.css" rel="stylesheet">
