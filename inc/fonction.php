@@ -148,9 +148,9 @@
 		$req = $connexion->prepare($sql);
 		$req->execute();
 	}
-	function AjoutPicker($name){
-		$sql= "insert into picker values(default,'%s')";
-		$sql= sprintf($sql,$name);
+	function AjoutPicker($name,$genre,$dtn){
+		$sql= "insert into picker values(default,'%s','%s','%s')";
+		$sql= sprintf($sql,$name,$genre,$dtn);
 		$connexion= dbconnect();
 		$req = $connexion->prepare($sql);
 		$req->execute();
@@ -325,6 +325,32 @@
 		return $result['totalQty'];
 	}
 
+	// Fonction pour calculer la quantité (qty) depuis la table picking où la date est comprise entre deux dates données avec idParcel
+	function calculateQtyBy2DateAndIdParcel ($idParcel ,$startDate, $endDate) {
+		// Connexion à la base de données
+		$connexion = dbconnect();
+
+		// Requête SQL pour calculer la somme de la quantité (qty) entre deux dates données
+		$sql = "SELECT SUM(qty) AS totalQty FROM picking WHERE idParcel=:idParcel AND theDate BETWEEN :startDate AND :endDate";
+
+		// Préparation de la requête
+		$stmt = $connexion->prepare($sql);
+
+		// Liaison des paramètres
+		$stmt->bindParam(':idParcel', $idParcel);
+		$stmt->bindParam(':startDate', $startDate);
+		$stmt->bindParam(':endDate', $endDate);
+
+		// Exécution de la requête
+		$stmt->execute();
+
+		// Récupération du résultat
+		$result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+		// Retourne le total de la quantité (qty)
+		return $result['totalQty'];
+	}
+
 	function calculateQtyGroupByIdParcel() {
 		// Connexion à la base de données
 		$connexion = dbconnect();
@@ -397,10 +423,23 @@
 		return $nbPieds;
 	}
 
+	function getDiffInMonth ($debut,$fin)
+	{
+		$dateDebut=new DateTime($debut);
+		$dateFin=new DateTime($fin);
+
+		$interval = $dateDebut->diff($dateFin);
+		$nombreDeJours = $interval->days;
+
+		$nbMonth=(int)($nombreDeJours/30);
+
+		return $nbMonth;
+	}
+
 	function getProductedQuantity ($idParcel,$debut,$fin)
 	{
 		$parcel=getParcelById($idParcel)[0];
-		$teaCategory=getTeaCategoryById($parcel["idTeaCategory"]);
+		$teaCategory=getTeaCategoryById($parcel["idTeaCategory"])[0];
 
 		$debutExploitation=new DateTime($parcel["startDate"]);
 		$debutStats=new DateTime($debut);
@@ -420,9 +459,32 @@
 			
 			// Calcul du total des mois en prenant en compte les jours
 			$totalMonths = ($interval->y * 12) + $interval->m;
-			$productedQuantity=$teaCategory["output"]*$totalMonths;
+			echo $totalMonths."</br>";
+			$productedQuantity=$teaCategory["output"]*$totalMonths*getPlantedQuantity($idParcel);
 		}
 
 		return $productedQuantity;
+	}
+	function getTotalProd ($debut,$fin)
+	{
+		$listParcel=getAllParcel();
+
+		$total=0;
+
+		for ($i=0; $i!=count($listParcel); $i++)
+		{
+			$total+=getProductedQuantity($listParcel[$i]["id"],$debut,$fin);
+		}
+
+		return $total;
+	}
+	
+	function getQttRestant ($idParcel,$pickingDate)
+	{
+		$parcel=getParcelById($idParcel)[0];
+		$debutExploitation=$parcel["startDate"];
+		
+		$quantiteRestant=getProductedQuantity($idParcel,$debutExploitation,$pickingDate)-calculateQtyBy2DateAndIdParcel($idParcel,$debutExploitation,$pickingDate);
+		return $quantiteRestant;
 	}
 ?>
