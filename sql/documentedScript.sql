@@ -40,8 +40,10 @@ create table picking ( --cueillette
 );
 
 create table salary (
-    salary double DEFAULT 5000, -- salaire pour 1 kg
-    salaryDate date not null
+    salary double DEFAULT 5000, --par kg
+    quotaMin double, 
+    double bonus, --en pourcentage
+    double mallus --en pourcentage
 );
 
 create table categSpent ( --catégorie dépense
