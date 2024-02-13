@@ -80,6 +80,16 @@
 		$retour = $req->fetchAll(PDO::FETCH_ASSOC);
 		return $retour;
 	}
+	function getAllPickingBetween ($dateDebut, $dateFin) {
+		$sql= "select * from picking where theDate between :debut and :fin";
+		$connexion= dbconnect();
+		$req = $connexion->prepare($sql);
+		$req->bindValue(':debut',$dateDebut);
+		$req->bindValue(':fin',$dateFin);
+		$req->execute();
+		$retour = $req->fetchAll(PDO::FETCH_ASSOC);
+		return $retour;
+	}
 	function getPickingById($id){
 		$sql= "select * from picking where id='%d'";
 		$sql= sprintf($sql,$id);
@@ -277,7 +287,7 @@
 		$req->execute();
 	}
 	
-	function getSalaryByDate($dateGiven) {
+	function getSalaryByDate ($dateGiven) {
 		// Connexion à la base de données
 		$connexion = dbconnect();
 
@@ -478,7 +488,10 @@
 
 		return $total;
 	}
-	
+	/*function getTotalSalaire ($debut,$fin)
+	{
+		$sql="select sum() from picking where theDate between :debut and :fin "
+	}*/
 	function getQttRestant ($idParcel,$pickingDate)
 	{
 		$parcel=getParcelById($idParcel)[0];

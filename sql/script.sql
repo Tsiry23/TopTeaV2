@@ -41,8 +41,10 @@ create table picking (
 );
 
 create table salary (
-    salary double DEFAULT 5000,
-    salaryDate date not null
+    salary double DEFAULT 15000,
+    quotaMin double,
+    bonus double,
+    mallus double 
 );
 
 create table categSpent (
@@ -58,6 +60,8 @@ create table spent (
     CHECK (spent>=0),
     Foreign key (idcategSpent) REFERENCES categSpent(id)
 );
+
+insert into salary values (default,15,0.25,0.15);
 
 INSERT INTO user (email, pswd, status) VALUES ('exemple@email.com', 'motdepasse123', 1);
 INSERT INTO teaCategory (name, output) VALUES ('Thé vert', 20.5);
