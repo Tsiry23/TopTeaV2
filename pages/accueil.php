@@ -55,7 +55,7 @@
           <li role="presentation"><a class="btn btn-default" id="mn" href="GSDepense.php"><i class="fa fa-database"></i></a></li>
       </ul>
       </div>
-      <div class="col-md-8">
+      <div class="col-md-10">
         <nav class="navbar navbar">
           <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
