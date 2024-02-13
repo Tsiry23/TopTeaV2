@@ -106,7 +106,7 @@
 		return $retour;
 	}
 	function getCategSpentById($id){
-		$sql= "select * from categSpent where name='%d'";
+		$sql= "select * from categSpent where id='%d'";
 		$sql= sprintf($sql,$id);
 		$connexion= dbconnect();
 		$req = $connexion->prepare($sql);
@@ -119,6 +119,15 @@
 	function getSpent($idSpent){
 		$sql= "select * from spent where id='%d'";
 		$sql= sprintf($sql,$idSpent);
+		$connexion= dbconnect();
+		$req = $connexion->prepare($sql);
+		$req->execute();
+		$retour = $req->fetchAll(PDO::FETCH_ASSOC);
+		return $retour;
+	}
+
+	function getAllSpent(){
+		$sql= "select * from spent";
 		$connexion= dbconnect();
 		$req = $connexion->prepare($sql);
 		$req->execute();
