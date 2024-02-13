@@ -70,6 +70,15 @@ create table vente (
     theDate date
 );
 
+create table mois (
+    idmois int primary key auto_increment,
+    mois VARCHAR (30)
+);
+
+create table saison (
+    idmois int
+);
+
 insert into salary values (default,15,0.25,0.15);
 
 insert into salary values (default,15,0.25,0.15);
