@@ -389,6 +389,11 @@
 
 	function getPlantedQuantity ($idParcel)
 	{
+		$parcel=getParcelById($idParcel)[0];
+		$teaCategory=getTeaCategoryById($parcel["idTeaCategory"]);
 
+		$nbPieds=(int)($parcel["size"]/$teaCategory["space"]);
+
+		return $nbPieds;
 	}
 ?>
