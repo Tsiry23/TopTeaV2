@@ -12,8 +12,8 @@
 </head>
 <body>
     <div class="container" id="container">
-        <div class="base-container sign-in">
-            <form action="../../controllers/traitLogin.php" method="post">
+        <div class="base-container log-in">
+            <form>
                 <h1>log In</h1>
                     <input class="formInput" type="email" placeholder="Email" name="mail" value="<?php echo $defaultUser["email"] ?>">
                     <input class="formInput" type="password" placeholder="Password" name="pwd" value="<?php echo "motdepasse123" ?>">
@@ -22,8 +22,8 @@
         </div>
         <div class="log-container">
             <div class="log">
-                <div class="log-panel log-right">
-                    <img src="../../assets/logo1.png" alt="miandry" width="80" height="100">
+                <div class="log-panel log-right" style="color: hsl(118, 33%, 43%)">
+                    <img src="assets/logo2.png" alt="miandry" width="100" height="100">
                     <h1>TopTea</h1>
                     <p>Hello, Friend!</p>
                 </div>
