@@ -63,6 +63,7 @@
           <li role="presentation"><a class="btn btn-default" id="mn" href="listePiker.html"><i class="fa fa-list-alt"></i></a></li>
           <li role="presentation"><a class="btn btn-default" id="mn" href="GSDepense.html"><i class="fa fa-database"></i></a></li>
       </ul>
+      <a class="btn btn-default" href="../../controllers/deconnection.php" style="zindex:1;bottom:20px;position: fixed;"><i class="fa fa-door-open"></i></a>s
       </div>
       <div class="col-md-8">
         <nav class="navbar navbar">
@@ -101,6 +102,28 @@
                     <td >5</td>
                 </tr>
             </table>
+
+            <div class="row">
+              <?php for ($i=0; $i!=count($listParcel); $i++) { ?>
+                <div class="panel panel-defaul">
+                  <div class="panel-body parcel" >
+                      <p>parcelle <?php echo $listParcel[$i]["id"] ?></p>
+                    <div class="form-group">
+                        <p class="alert alert-success">Taille: <?php echo $listParcel[$i]["size"] ?></p>
+                    </div>
+                    <div class="form-group">
+                        <p class="alert alert-success">Début plantation: <?php echo $listParcel[$i]["startDate"] ?></p>
+                    </div>
+                    <div class="form-group">
+                        <p class="alert alert-success">Type de plantation: <?php echo getTeaCategoryById($listParcel[$i]["idTeaCategory"])[0]["name"]; ?></p>
+                    </div>
+                    <div class="form-group">
+                        <a href="accueil.php?mod=u&id=<?php echo $listParcel[$i]["id"] ?>" class="btn btn-default">Modifier</a>
+                    </div>
+                    </div>
+                </div> 
+                <?php } ?>
+            </div>
         </div>
       <div class="row-fluid text-center" style="width: 100%;bottom:0;position: fixed;">
         <p>ETU002719 - ETU002575 - ETU002363</p>
