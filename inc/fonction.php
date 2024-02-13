@@ -622,4 +622,36 @@
 
 		return $coutRevient;
 	}
+	function updateSalary ($newSalary)
+	{
+		$connection=dbconnect();
+		$sql="update salary set salary=:newValue";
+		$stmt = $connection->prepare($sql);
+		$stmt->bindParam(':newValue', $newSalary);
+		$stmt->execute();
+	}
+	function updateQuotaMin ($newQuota)
+	{
+		$connection=dbconnect();
+		$sql="update salary set quotaMin=:newQuota";
+		$stmt = $connection->prepare($sql);
+		$stmt->bindParam(':newQuota', $newQuota);
+		$stmt->execute();
+	}
+	function updateBonus ($bonus)
+	{
+		$connection=dbconnect();
+		$sql="update salary set bonus=:bonus";
+		$stmt = $connection->prepare($sql);
+		$stmt->bindParam(':bonus', $bonus);
+		$stmt->execute();
+	}
+	function updateMallus ($mallus)
+	{
+		$connection=dbconnect();
+		$sql="update salary set mallus=:mallus";
+		$stmt = $connection->prepare($sql);
+		$stmt->bindParam(':mallus', $mallus);
+		$stmt->execute();
+	}
 ?>
