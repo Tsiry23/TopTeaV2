@@ -561,4 +561,61 @@
 		$quantiteRestant=getProductedQuantity($idParcel,$debutExploitation,$pickingDate)-calculateQtyBy2DateAndIdParcel($idParcel,$debutExploitation,$pickingDate);
 		return $quantiteRestant;
 	}
+	// Fonction pour calculer la somme de tous les montants dépensés (spent)
+	function calculateTotalSpentBetween ($debut,$fin) {
+		// Connexion à la base de données
+		$connexion = dbconnect();
+	
+		// Requête SQL pour calculer la somme de tous les montants dépensés (spent)
+		$sql = "SELECT SUM(spent) AS totalSpent FROM spent WHERE theDate BETWEEN :debut AND :fin";
+	
+		// Préparation de la requête
+		$stmt = $connexion->prepare($sql);
+	
+		$stmt->bindParam(':debut', $debut);
+		$stmt->bindParam(':fin', $fin);
+
+		// Exécution de la requête
+		$stmt->execute();
+	
+		// Récupération du résultat
+		$result = $stmt->fetch(PDO::FETCH_ASSOC);
+	
+		// Retourne le total des montants dépensés (spent)
+		return $result['totalSpent'];
+	}	
+	function calculateTotalSellBetween ($debut,$fin) {
+		// Connexion à la base de données
+		$connexion = dbconnect();
+	
+		// Requête SQL pour calculer la somme de tous les montants dépensés (spent)
+		$sql = "SELECT SUM(spent) AS totalSell FROM vente WHERE theDate BETWEEN :debut AND :fin";
+	
+		// Préparation de la requête
+		$stmt = $connexion->prepare($sql);
+	
+		$stmt->bindParam(':debut', $debut);
+		$stmt->bindParam(':fin', $fin);
+
+		// Exécution de la requête
+		$stmt->execute();
+	
+		// Récupération du résultat
+		$result = $stmt->fetch(PDO::FETCH_ASSOC);
+	
+		// Retourne le total des montants dépensés (spent)
+		return $result['totalSell'];
+	}	
+	function getTotalDepense ($dateDebut,$dateFin)
+	{
+		$total=getTotalSalaire($dateDebut,$dateFin)+calculateTotalSpentBetween($dateDebut,$dateFin);
+
+		return $total;
+	}
+	function getCoutRevientParKilo ($dateDebut,$dateFin)
+	{
+		$coutRevient=getTotalDepense($dateDebut,$dateFin)/getTotalProd($dateDebut,$dateFin);
+
+		return $coutRevient;
+	}
 ?>
