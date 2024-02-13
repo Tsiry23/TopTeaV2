@@ -1,3 +1,7 @@
+<?php 
+  include("../inc/fonction.php");
+  $AllParcelle=getAllParcel();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -80,13 +84,20 @@
             <table class="table">
                 <tr>
                     <td >Total cueillette</td>
-                    <td >Restant parcelle</td>
                     <td >Coût de revient</td>
+                    <td>Montant de vente</td>
+                    <td>Depense</td>
+                    <td>Benefice</td>
                 </tr>
+              <?php
+                  $totatlCueillette =   
+              ?>
                 <tr>
                     <td >1</td>
                     <td >2</td>
                     <td >3</td>
+                    <td >4</td>
+                    <td >5</td>
                 </tr>
             </table>
         </div>
