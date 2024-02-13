@@ -3,12 +3,12 @@
 	//include('connexion.php');
 	include('connectionForDeploiement.php');
 	
-	function login ($email, $pwd,$status) //retourne un array vide si inexistant
+	function login ($email, $pwd) //retourne un array vide si inexistant
 	{
-		$sql="select * from user where email=? and pswd=sha1(?) and status=?";
+		$sql="select * from user where email=? and pswd=sha1(?)";
 		$connexion= dbconnect();
 		$req = $connexion->prepare($sql);
-		$req->execute(array($email,$pwd,$status));
+		$req->execute(array($email,$pwd));
 		$retour = $req->fetchAll(PDO::FETCH_ASSOC);
 		return $retour;
 	}
