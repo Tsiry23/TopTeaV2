@@ -3,12 +3,12 @@
 	//include('connexion.php');
 	include('connectionForDeploiement.php');
 	
-	function login ($email, $pwd,$status) //retourne un array vide si inexistant
+	function login ($email, $pwd) //retourne un array vide si inexistant
 	{
-		$sql="select * from user where email=? and pswd=sha1(?) and status=?";
+		$sql="select * from user where email=? and pswd=sha1(?)";
 		$connexion= dbconnect();
 		$req = $connexion->prepare($sql);
-		$req->execute(array($email,$pwd,$status));
+		$req->execute(array($email,$pwd));
 		$retour = $req->fetchAll(PDO::FETCH_ASSOC);
 		return $retour;
 	}
@@ -477,7 +477,6 @@
 			
 			// Calcul du total des mois en prenant en compte les jours
 			$totalMonths = ($interval->y * 12) + $interval->m;
-			echo $totalMonths."</br>";
 			$productedQuantity=$teaCategory["output"]*$totalMonths*getPlantedQuantity($idParcel);
 		}
 
@@ -589,7 +588,7 @@
 		$connexion = dbconnect();
 	
 		// Requête SQL pour calculer la somme de tous les montants dépensés (spent)
-		$sql = "SELECT SUM(spent) AS totalSell FROM vente WHERE theDate BETWEEN :debut AND :fin";
+		$sql = "SELECT SUM(prixVente*qtt) AS totalSell FROM vente WHERE theDate BETWEEN :debut AND :fin";
 	
 		// Préparation de la requête
 		$stmt = $connexion->prepare($sql);
@@ -614,7 +613,12 @@
 	}
 	function getCoutRevientParKilo ($dateDebut,$dateFin)
 	{
-		$coutRevient=getTotalDepense($dateDebut,$dateFin)/getTotalProd($dateDebut,$dateFin);
+		if (getTotalProd($dateDebut,$dateFin)==0) {
+			return 0;
+		}
+		else {
+			$coutRevient=getTotalDepense($dateDebut,$dateFin)/getTotalProd($dateDebut,$dateFin);
+		}
 
 		return $coutRevient;
 	}
