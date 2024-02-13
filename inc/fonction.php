@@ -477,7 +477,6 @@
 			
 			// Calcul du total des mois en prenant en compte les jours
 			$totalMonths = ($interval->y * 12) + $interval->m;
-			echo $totalMonths."</br>";
 			$productedQuantity=$teaCategory["output"]*$totalMonths*getPlantedQuantity($idParcel);
 		}
 
