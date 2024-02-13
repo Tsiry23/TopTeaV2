@@ -155,9 +155,9 @@
 		$req = $connexion->prepare($sql);
 		$req->execute();
 	}
-	function AjoutPicking($idParcel,$qty,$theDate){
-		$sql= "insert into picking values(default,'%d','%s','%s')";
-		$sql= sprintf($sql,$idParcel,$qty,$theDate);
+	function AjoutPicking($idParcel,$qty,$idPicker,$theDate){
+		$sql= "insert into picking values(default,%d,%d,%d,'%s')";
+		$sql= sprintf($sql,$idParcel,$qty,$idPicker,$theDate);
 		$connexion= dbconnect();
 		$req = $connexion->prepare($sql);
 		$req->execute();
@@ -387,4 +387,8 @@
 		return $result['totalSpent'];
 	}	
 
+	function getPlantedQuantity ($idParcel)
+	{
+
+	}
 ?>

@@ -33,6 +33,7 @@ create table picking (
     id int primary key  auto_increment,
     idParcel int REFERENCES parcel(id),
     qty double DEFAULT 0 ,
+    idPicker int,
     theDate date not null ,
     CHECK (qty>=0)
 );
