@@ -496,10 +496,63 @@
 
 		return $total;
 	}
-	/*function getTotalSalaire ($debut,$fin)
+	//Donne le mallus à retirer d'une cueuillette
+	function getMallus ($idPicking)
 	{
-		$sql="select sum() from picking where theDate between :debut and :fin "
-	}*/
+		$picking=getPickingById($idPicking)[0];
+		$salary=getSalary()[0];
+
+		$salaryAmount=$picking["qty"]*$salary["salary"];
+
+		$mallus=0;
+		
+		if ($picking["qty"]<$salary["quotaMin"])
+		{
+			$mallus=$salaryAmount*$salary["mallus"];
+		}
+		
+		return $mallus;
+	}
+	function getBonus ($idPicking)
+	{
+		$picking=getPickingById($idPicking)[0];
+		$salary=getSalary()[0];
+
+		$salaryAmount=$picking["qty"]*$salary["salary"];
+
+		$bonus=0;
+		
+		if ($picking["qty"]>$salary["quotaMin"])
+		{
+			$bonus=$salaryAmount*$salary["bonus"];
+		}
+		
+		return $bonus;
+	}
+	function getSalaryAmount ($idPicking)
+	{
+		$picking=getPickingById($idPicking)[0];
+		$salary=getSalary()[0];
+
+		$salaryAmount=$picking["qty"]*$salary["salary"];
+
+		$salaryAmount-=getMallus($idPicking);
+		$salaryAmount+=getBonus($idPicking);
+
+		return $salaryAmount;
+	}
+	function getTotalSalaire ($debut,$fin)
+	{
+		$allPicking=getAllPickingBetween($debut,$fin);
+		$total=0;
+
+		for ($i=0; $i!=count($allPicking); $i++)
+		{
+			$total+=getSalaryAmount($allPicking[$i]["id"]);
+		}
+
+		return $total;
+	}
 	function getQttRestant ($idParcel,$pickingDate)
 	{
 		$parcel=getParcelById($idParcel)[0];
