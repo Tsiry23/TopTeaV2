@@ -36,12 +36,12 @@
 <body>
   <div class="container-fluid">
   	<div class="row">
-      <div class="col-md-1 facture"><br>
+      <div class="col-md-2 facture"><br>
         <ul class="nav nav-pills nav-stacked">
-          <li role="presentation"><a class="btn btn-default" id="mn" href="accueil.php"><i class="fa fa-home"></i></a></li>
-          <li role="presentation"><a class="btn btn-default" id="mn" href="listePiker.php"><i class="fa fa-list-alt"></i></a></li>
-          <li role="presentation"><a class="btn btn-default" id="mn" href="depense.php"><i class="fa fa-database"></i></a></li>
-          <li role="presentation"><a class="btn btn-default" id="mn" href="saison.php"><i class="fa fa-database"></i></a></li>
+          <li role="presentation"><a class="btn btn-default" id="mn" href="accueil.php"><i class="fa fa-home"></i> Parcelle</a></li>
+          <li role="presentation"><a class="btn btn-default" id="mn" href="listePiker.php"><i class="fa fa-list-alt"></i> Cueilleur</a></li>
+          <li role="presentation"><a class="btn btn-default" id="mn" href="GSDepense.php"><i class="fa fa-database"></i> Depense</a></li>
+          <li role="presentation"><a class="btn btn-default" id="mn" href="saison.php"><i class="fa fa-database"></i> Saison</a></li>
         </ul>
         <a class="btn btn-default" href="../../controllers/deconnection.php" style="zindex:1;bottom:20px;position: fixed;"><i class="fa fa-door-open"></i></a>
       </div>
