@@ -6,8 +6,7 @@
     include("../../inc/fonction.php");
     $user= $_SESSION['user'];
 
-    $listCatTea=getAllTeaCategory();
-    $listParcel=getAllParcel();
+    $salary=getSalary()[0];
 ?>
 <!DOCTYPE html>
 <html>
@@ -77,25 +76,25 @@
           </div>
         </nav><br>
         <div class="row-fluid">
-            <form action="../../controllers/CrudParcelle.php" method="get"">
+            <form action="../../controllers/CrudSalaire.php" method="get"">
                 <div class="form-group">
                     <label for="">salaire :</label>
-                    <input class="form-control" type="text" name="salaire">
+                    <input class="form-control" type="text" name="salaire" value="<?php echo $salary['salary']; ?>">
                 </div>
 
                 <div class="form-group">
                     <label for="">quota :</label>
-                    <input class="form-control" type="text" name="quota">
+                    <input class="form-control" type="text" name="quota" value="<?php echo $salary['quotaMin']; ?>">
                 </div>
 
                 <div class="form-group">
                     <label for="">mallus :</label>
-                    <input class="form-control" type="text" name="mallus">
+                    <input class="form-control" type="text" name="mallus" value="<?php echo $salary['mallus']; ?>">
                 </div>
 
                 <div class="form-group">
                     <label for="">bonus :</label>
-                    <input class="form-control" type="text" name="bonus">
+                    <input class="form-control" type="text" name="bonus" value="<?php echo $salary['bonus']; ?>">
                 </div>
                 <button class="btn btn-success" type="submit">Valider</button>
             </form>

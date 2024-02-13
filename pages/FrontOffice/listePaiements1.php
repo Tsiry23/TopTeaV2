@@ -64,7 +64,7 @@
       </ul>
       <a class="btn btn-default" href="../../controllers/deconnection.php" style="zindex:1;bottom:20px;position: fixed;"><i class="fa fa-door-open"></i></a>
       </div>
-      <div class="col-md-8">
+      <div class="col-md-10">
         <nav class="navbar navbar">
           <div class="container-fluid">
             
@@ -82,6 +82,7 @@
         </nav><br>
         <!-- Formulaire -->
             <form action="../FrontOffice/listePaiements.php" method="get">
+            <h3 class="alert alert-success">page Paiements</h3>
             <div class="form-group">
                 <label for="date">Date debut:</label>
                 <input type="date" class="form-control" id="date" name="dateDebut" required>

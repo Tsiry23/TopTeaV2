@@ -622,6 +622,17 @@
 
 		return $coutRevient;
 	}
+	function updateAllSalary ($newSalary,$newQuota,$bonus,$mallus)
+	{
+		$connection=dbconnect();
+		$sql="update salary set salary=:newValue,quotaMin=:newQuota,bonus=:bonus,mallus=:mallus";
+		$stmt = $connection->prepare($sql);
+		$stmt->bindParam(':newValue', $newSalary);
+		$stmt->bindParam(':newQuota', $newQuota);
+		$stmt->bindParam(':bonus', $bonus);
+		$stmt->bindParam(':mallus', $mallus);
+		$stmt->execute();
+	}
 	function updateSalary ($newSalary)
 	{
 		$connection=dbconnect();
