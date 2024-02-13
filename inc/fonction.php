@@ -387,6 +387,7 @@
 		return $result['totalSpent'];
 	}	
 
+<<<<<<< Updated upstream
 	function getPlantedQuantity ($idParcel)
 	{
 		$parcel=getParcelById($idParcel)[0];
@@ -396,4 +397,10 @@
 
 		return $nbPieds;
 	}
+=======
+	function coutDeRevient($startDate, $endDate){
+		return calculateTotalSpent()/calculateQtyBy2Date($startDate, $endDate);
+	}
+
+>>>>>>> Stashed changes
 ?>
