@@ -79,7 +79,7 @@
                     <h3 class="myModalLabel">Ajout Parcelle</h3>
                   </div>
                   <div class="modal-body">
-                  <?php if (!isset($_GET["mod"])) { 
+                  <?php if (!empty($_GET["mod"])) { 
                         $parcel=getParcelById($_GET["id"])[0];
                     ?>
                     <form action="../controllers/CrudParcelle.php" method="get">
