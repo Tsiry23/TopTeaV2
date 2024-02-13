@@ -13,7 +13,7 @@
 <body>
     <div class="container" id="container">
         <div class="base-container log-in">
-            <form>
+            <form action="../../controllers/traitLogin.php" method="post">
                 <h1>log In</h1>
                     <input class="formInput" type="email" placeholder="Email" name="mail" value="<?php echo $defaultUser["email"] ?>">
                     <input class="formInput" type="password" placeholder="Password" name="pwd" value="<?php echo "motdepasse123" ?>">
