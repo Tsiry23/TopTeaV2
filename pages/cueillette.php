@@ -1,5 +1,9 @@
 <?php 
   include('../inc/fonction.php');
+
+  if(!empty($_GET['mod'])){
+    $part= getParcelById($_GET['id']);
+  }
 ?>
 <!DOCTYPE html>
 <html>
