@@ -1,15 +1,11 @@
 <?php
     include('../inc/fonction.php');
-    $delete=$_GET['mod'];
-    $id=$_GET['id'];
-    
-    if(isset($delete)) {
-        suppCategSpent($id);
-    }
-    else {
-        $name=$_GET["name"];
-        AjoutCategSpent($name);
-    }
+    $idcategSpent=$_GET['idParcelle'];
+    $spent=$_GET['val'];
+    $theDate=$_GET['date'];
 
-    header('Location:../pages/GSDepense.php');                         
+
+    AjoutSpent($idcategSpent,$spent,$theDate);
+    header('Location:../pages/depense.php'); 
+
 ?>

@@ -96,7 +96,7 @@
               <tr>
                 <td><?php echo $AllCatDepense[$i]["id"]?></td>
                 <td><?php echo $AllCatDepense[$i]["name"]?></td>
-                <td><a class="btn btn-danger" href="../controllers/CrudDepense.php?mod=d&id=<?php echo $AllCatDepense[$i]['id']?>">Delete</a></td>  
+                <td><a class="btn btn-danger" href="../controllers/CrudGSDepense.php?mod=d&id=<?php echo $AllCatDepense[$i]['id']?>">Delete</a></td>  
               </tr>
               <?php } ?>
           </table>
