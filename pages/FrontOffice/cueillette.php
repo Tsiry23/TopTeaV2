@@ -70,7 +70,7 @@
         </nav><br>
         <div class="row-fluid boite">
           <p>Formulaire de cueillette</p>
-          <form action="../../controllers/CrudCueillette.php" method="get">
+          <form id="form">
             <div class="form-group">
               <label for="idParcelle">ID Parcelle :</label>
               <select class="form-control" name="idParcelle" id="idParcelle">
@@ -108,5 +108,50 @@
       </div>
     </div>
   </div>
+  <script>
+        function CreateXhr()
+        {
+            let xhr;
+            try {  xhr = new ActiveXObject('Msxml2.XMLHTTP');   }
+            catch (e) 
+            {
+                try {   xhr = new ActiveXObject('Microsoft.XMLHTTP'); }
+                catch (e2) 
+                {
+                    try {  xhr = new XMLHttpRequest();  }
+                    catch (e3) {  xhr = false;   }
+                }
+            }
+            return xhr;
+        }
+
+        window.addEventListener("load", function () {
+            function sendData() {
+            var xhr= CreateXhr();
+            var formData = new FormData(form);
+
+            // Définissez ce qui se passe si la soumission s'est opérée avec succès
+            xhr.addEventListener("load", function(event) {
+                var msg=event.target.responseText;
+                alert(msg);
+            });
+
+            // Definissez ce qui se passe en cas d'erreur
+            xhr.addEventListener("error", function(event) {
+                alert('Oups! Quelque chose s\'est mal passé.');
+            });
+
+            // Configurez la requête
+            xhr.open("POST", "../../controllers/CrudCueillette.php");
+            xhr.send(formData);
+            }
+
+            var form = document.getElementById("form");
+            form.addEventListener("submit", function (event) {
+                event.preventDefault(); // évite de faire le submit par défaut
+                sendData();
+            });
+        });
+  </script>
 </body>
 </html>

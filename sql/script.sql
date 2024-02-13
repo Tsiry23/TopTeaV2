@@ -84,6 +84,7 @@ insert into salary values (default,15,0.25,0.15);
 insert into salary values (default,15,0.25,0.15);
 
 INSERT INTO user (email, pswd, status) VALUES ('exemple@email.com', sha1('motdepasse123'), 1);
+INSERT INTO user (email, pswd, status) VALUES ('exemple2@email.com', sha1('motdepasse123'), 0);
 
 INSERT INTO parcel (size, idTeaCategory, startDate) VALUES (10.2, 1, '2024-02-12');
 INSERT INTO parcel (size, idTeaCategory, startDate) VALUES (60.2, 1, '2024-02-12');
