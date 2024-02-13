@@ -13,6 +13,7 @@ create table teaCategory (
     name varchar(30) not null,
     output double default 10,
     space double,
+    prixVente double,
     CHECK (output>=0)
 );
 
@@ -59,6 +60,14 @@ create table spent (
     theDate date,
     CHECK (spent>=0),
     Foreign key (idcategSpent) REFERENCES categSpent(id)
+);
+
+create table vente (
+    id int primary key auto_increment,
+    idTeaCategory int references teaCategory(id),
+    qtt double,
+    prixVente double,
+    theDate date
 );
 
 insert into salary values (default,15,0.25,0.15);

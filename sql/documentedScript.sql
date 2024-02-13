@@ -13,6 +13,7 @@ create table teaCategory (
     name varchar(30) not null,
     output double default 10, --rendement
     space double, --modif (espace occupée par pied)
+    prixVente double,
     CHECK (output>=0)rendement
 );
 
@@ -58,6 +59,14 @@ create table spent ( --dépenses
     theDate date,
     CHECK (spent>=0),
     Foreign key idcategSpent REFERENCES categSpent(id)
+);
+
+create table vente ( --vente
+    id int primary key auto_increment,
+    idTeaCategory int references teaCategory(id),
+    qtt double,
+    prixVente double,
+    dtn date
 );
 
 -- Exemple 1 : Thé vert avec un rendement de 85%
