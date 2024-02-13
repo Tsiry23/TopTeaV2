@@ -1,6 +1,7 @@
 <?php 
   include("../../inc/fonction.php");
-  $AllParcelle=getAllParcel();
+  $dateDebut=$_GET['dateDebut'];
+  $dateFin=$_GET['dateFin'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -79,19 +80,33 @@
           </div>
         </nav><br>
         <!-- Formulaire -->
-            <form action="../FrontOffice/result.php" method="get">
-            <div class="form-group">
-                <label for="date">Date debut:</label>
-                <input type="date" class="form-control" id="date" name="dateDebut" required>
-                </div>
-                <div class="form-group">
-                <label for="date">Date fin:</label>
-                <input type="date" class="form-control" id="date" name="dateFin" required>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-default">valider</button>
-              </div>
-            </form >
+        <div class="row-fluid">
+            <p><?php echo 'Date debut :'.$dateDebut ;?></p>
+            <p><?php echo 'Date fin :'.$dateFin ;?></p>
+            <table class="table">
+              <br>
+              <?php 
+                $AllPickingBetween=getAllPickingBetween($dateDebut,$dateFin);
+              ?>
+                <tr>
+                    <td >Date</td>
+                    <td >NomCueilleur</td>
+                    <td>Poids</td>
+                    <td>Montant total</td>
+                    <td>Bonus</td>
+                    <td>Malus</td>
+                </tr>
+                <?php for ($i=0; $i < count($AllPickingBetween); $i++) { ?>
+                    <tr>
+                        <td ><?php echo $AllPickingBetween[$i]['theDate']; ?></td>
+                        <td ><?php echo getPickerById($AllPickingBetween[$i]['idPicker'])[0]['name']?></td>
+                        <td ><?php echo $AllPickingBetween[$i]['qty']; ?></td>
+                        <td ><?php echo getSalaryAmount(getPickerById($AllPickingBetween[$i]['idPicker'])[0]['id']); ?></td>
+                        <td ><?php echo getBonus(getPickerById($AllPickingBetween[$i]['idPicker'])[0]['id']); ?></td>
+                        <td ><?php echo getMallus(getPickerById($AllPickingBetween[$i]['idPicker'])[0]['id']); ?></td>
+                    </tr>
+                <?php } ?>
+            </table>
         </div>
       <div class="row-fluid text-center" style="width: 100%;bottom:0;position: fixed;">
         <p>ETU002719 - ETU002575 - ETU002363</p>

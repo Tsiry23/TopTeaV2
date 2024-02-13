@@ -79,7 +79,7 @@
           </div>
         </nav><br>
         <!-- Formulaire -->
-            <form action="../FrontOffice/result.php" method="get">
+            <form action="../FrontOffice/listePaiements.php" method="get">
             <div class="form-group">
                 <label for="date">Date debut:</label>
                 <input type="date" class="form-control" id="date" name="dateDebut" required>
@@ -91,7 +91,7 @@
             <div class="modal-footer">
                 <button type="submit" class="btn btn-default">valider</button>
               </div>
-            </form >
+            </form>
         </div>
       <div class="row-fluid text-center" style="width: 100%;bottom:0;position: fixed;">
         <p>ETU002719 - ETU002575 - ETU002363</p>

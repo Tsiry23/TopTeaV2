@@ -94,7 +94,7 @@
                     <td>Benefice</td>
                 </tr>
                 <tr>
-                    <td ><?php echo getTotalProd($dateDebut,$dateFin); ?></td>
+                    <td><?php echo getTotalProd($dateDebut,$dateFin); ?></td>
                     <td >2</td>
                     <td >3</td>
                     <td >4</td>
