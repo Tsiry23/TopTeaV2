@@ -62,6 +62,7 @@
           <li role="presentation"><a class="btn btn-default" id="mn" href="listePiker.html"><i class="fa fa-list-alt"></i></a></li>
           <li role="presentation"><a class="btn btn-default" id="mn" href="GSDepense.html"><i class="fa fa-database"></i></a></li>
       </ul>
+      <a class="btn btn-default" href="../../controllers/deconnection.php" style="zindex:1;bottom:20px;position: fixed;"><i class="fa fa-door-open"></i></a>
       </div>
       <div class="col-md-8">
         <nav class="navbar navbar">
