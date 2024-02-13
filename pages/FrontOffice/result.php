@@ -63,7 +63,7 @@
           <li role="presentation"><a class="btn btn-default" id="mn" href="listePiker.html"><i class="fa fa-list-alt"></i></a></li>
           <li role="presentation"><a class="btn btn-default" id="mn" href="GSDepense.html"><i class="fa fa-database"></i></a></li>
       </ul>
-      <a class="btn btn-default" href="../../controllers/deconnection.php" style="zindex:1;bottom:20px;position: fixed;"><i class="fa fa-door-open"></i></a>s
+      <a class="btn btn-default" href="../../controllers/deconnection.php" style="zindex:1;bottom:20px;position: fixed;"><i class="fa fa-door-open"></i></a>
       </div>
       <div class="col-md-8">
         <nav class="navbar navbar">
@@ -96,15 +96,17 @@
                 </tr>
                 <tr>
                     <td><?php echo getTotalProd($dateDebut,$dateFin); ?></td>
-                    <td >2</td>
-                    <td >3</td>
-                    <td >4</td>
-                    <td >5</td>
+                    <td ><?php getCoutRevientParKilo ($dateDebut,$dateFin);?></td>
+                    <td ><?php calculateTotalSellBetween ($dateDebut,$dateFin);?></td>
+                    <td ><?php getTotalDepense ($dateDebut,$dateFin);?></td>
+                    <td ><?php (calculateTotalSellBetween ($dateDebut,$dateFin))-(getTotalDepense ($dateDebut,$dateFin));?></td>
                 </tr>
             </table>
 
             <div class="row">
-              <?php for ($i=0; $i!=count($listParcel); $i++) { ?>
+              <?php 
+              $listParcel=getAllParcel();
+              for ($i=0; $i!=count($listParcel); $i++) { ?>
                 <div class="panel panel-defaul">
                   <div class="panel-body parcel" >
                       <p>parcelle <?php echo $listParcel[$i]["id"] ?></p>
