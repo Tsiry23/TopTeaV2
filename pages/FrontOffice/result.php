@@ -59,9 +59,10 @@
     <div class="row">
       <div class="col-md-1 facture"><br>
         <ul class="nav nav-pills nav-stacked">
-          <li role="presentation"><a class="btn btn-default" id="mn" href="accueil.html"><i class="fa fa-home"></i></a></li>
-          <li role="presentation"><a class="btn btn-default" id="mn" href="listePiker.html"><i class="fa fa-list-alt"></i></a></li>
-          <li role="presentation"><a class="btn btn-default" id="mn" href="GSDepense.html"><i class="fa fa-database"></i></a></li>
+          <li role="presentation"><a class="btn btn-default" id="mn" href="accueil.php"><i class="fa fa-home"></i></a></li>
+          <li role="presentation"><a class="btn btn-default" id="mn" href="cueillette.php"><i class="fa fa-database"></i></a></li>
+          <li role="presentation"><a class="btn btn-default" id="mn" href="listePiker.php"><i class="fa fa-list-alt"></i></a></li>
+          <li role="presentation"><a class="btn btn-default" id="mn" href="GSDepense.php"><i class="fa fa-database"></i></a></li>
       </ul>
       <a class="btn btn-default" href="../../controllers/deconnection.php" style="zindex:1;bottom:20px;position: fixed;"><i class="fa fa-door-open"></i></a>
       </div>
@@ -102,7 +103,6 @@
                     <td ><?php (calculateTotalSellBetween ($dateDebut,$dateFin))-(getTotalDepense ($dateDebut,$dateFin));?></td>
                 </tr>
             </table>
-
             <div class="row">
               <?php 
               $listParcel=getAllParcel();
@@ -111,17 +111,7 @@
                   <div class="panel-body parcel" >
                       <p>parcelle <?php echo $listParcel[$i]["id"] ?></p>
                     <div class="form-group">
-                        <p class="alert alert-success">Taille: <?php echo $listParcel[$i]["size"] ?></p>
-                    </div>
-                    <div class="form-group">
-                        <p class="alert alert-success">Début plantation: <?php echo $listParcel[$i]["startDate"] ?></p>
-                    </div>
-                    <div class="form-group">
-                        <p class="alert alert-success">Type de plantation: <?php echo getTeaCategoryById($listParcel[$i]["idTeaCategory"])[0]["name"]; ?></p>
-                    </div>
-                    <div class="form-group">
-                        <a href="accueil.php?mod=u&id=<?php echo $listParcel[$i]["id"] ?>" class="btn btn-default">Modifier</a>
-                    </div>
+                        <p class="alert alert-success">Quantite restant : <?php echo getQttRestant($listParcel[$i]["id"],$dateFin) ?></p>
                     </div>
                 </div> 
                 <?php } ?>

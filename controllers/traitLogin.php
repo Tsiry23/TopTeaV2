@@ -14,7 +14,7 @@
     {
         session_start();
         $_SESSION['user']= $user;
-        if($user[0]['status'] == 0){
+        if($user[0]['status'] == 1){
             header("Location:../pages/BackOffice/accueil.php");
         }else{
             header("Location:../pages/FrontOffice/accueil.php");
