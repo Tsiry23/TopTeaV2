@@ -61,12 +61,13 @@
         <ul class="nav nav-pills nav-stacked">
           <li role="presentation"><a class="btn btn-default" id="mn" href="accueil.php"><i class="fa fa-home"></i></a></li>
           <li role="presentation"><a class="btn btn-default" id="mn" href="cueillette.php"><i class="fa fa-database"></i></a></li>
-          <li role="presentation"><a class="btn btn-default" id="mn" href="listePiker.php"><i class="fa fa-list-alt"></i></a></li>
-          <li role="presentation"><a class="btn btn-default" id="mn" href="GSDepense.php"><i class="fa fa-database"></i></a></li>
+          <li role="presentation"><a class="btn btn-default" id="mn" href="listePaiements1.php"><i class="fa fa-list-alt"></i></a></li>
+          <li role="presentation"><a class="btn btn-default" id="mn" href="result1.php"><i class="fa fa-database"></i></a></li>
       </ul>
       <a class="btn btn-default" href="../../controllers/deconnection.php" style="zindex:1;bottom:20px;position: fixed;"><i class="fa fa-door-open"></i></a>
       </div>
-      <div class="col-md-8">
+      <div class="col-md-10" style="height:100vh;over;overflow: hidden;
+            overflow-y: auto; ">
         <nav class="navbar navbar">
           <div class="container-fluid">
             
@@ -83,7 +84,7 @@
           </div>
         </nav><br>
         <!-- Formulaire -->
-        <div class="row-fluid">
+        <div class="row" >
             <p><?php echo 'Date debut :'.$dateDebut ;?></p>
             <p><?php echo 'Date fin :'.$dateFin ;?></p>
             <table class="table">
@@ -97,10 +98,10 @@
                 </tr>
                 <tr>
                     <td><?php echo getTotalProd($dateDebut,$dateFin); ?></td>
-                    <td ><?php getCoutRevientParKilo ($dateDebut,$dateFin);?></td>
-                    <td ><?php calculateTotalSellBetween ($dateDebut,$dateFin);?></td>
-                    <td ><?php getTotalDepense ($dateDebut,$dateFin);?></td>
-                    <td ><?php (calculateTotalSellBetween ($dateDebut,$dateFin))-(getTotalDepense ($dateDebut,$dateFin));?></td>
+                    <td ><?php echo getCoutRevientParKilo ($dateDebut,$dateFin);?></td>
+                    <td ><?php echo calculateTotalSellBetween ($dateDebut,$dateFin);?></td>
+                    <td ><?php echo getTotalDepense ($dateDebut,$dateFin);?></td>
+                    <td ><?php echo (calculateTotalSellBetween ($dateDebut,$dateFin))-(getTotalDepense ($dateDebut,$dateFin));?></td>
                 </tr>
             </table>
             <div class="row">
@@ -108,7 +109,7 @@
               $listParcel=getAllParcel();
               for ($i=0; $i!=count($listParcel); $i++) { ?>
                 <div class="panel panel-defaul">
-                  <div class="panel-body parcel" >
+                  <div class="panel-body" >
                       <p>parcelle <?php echo $listParcel[$i]["id"] ?></p>
                     <div class="form-group">
                         <p class="alert alert-success">Quantite restant : <?php echo getQttRestant($listParcel[$i]["id"],$dateFin) ?></p>
