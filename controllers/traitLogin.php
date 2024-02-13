@@ -4,7 +4,7 @@
     $mail=$_POST["mail"];
     $pwd=$_POST["pwd"];
 
-    $user=login($mail,$pwd);
+    $user=login($mail,$pwd)[0];
 
     var_dump($user);
 
@@ -12,9 +12,11 @@
 
     if (count($user)!=0)
     {
-        header("Location:../pages/accueil.php");
+        session_start();
+        $_SESSION['user']= $user;
+        header("Location:../pages/BackOffice/accueil.php");
     }
     else {
-        header("Location:../pages/index.php?error=Login ou mot de passe");
+        header("Location:../pages/BackOffice/index.php?error=Login ou mot de passe");
     }
 ?>

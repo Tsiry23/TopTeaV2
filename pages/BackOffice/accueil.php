@@ -1,5 +1,10 @@
 <?php
+    session_start();
+    if(!isset($_SESSION['user'])){
+      header('location:index.php');
+    }
     include("../../inc/fonction.php");
+    $user= $_SESSION['user'];
 
     $listCatTea=getAllTeaCategory();
     $listParcel=getAllParcel();
@@ -23,14 +28,12 @@
     /*background: grey;*/
   }
   .parcel{
-    background: rgba(240,240,240,0.7); 
-    border: none; 
-    
+    width:250px;
   }
   .facture{
     background: #2F2F2F12;
-    height: 100vh;overflow: auto;
-    box-shadow: 0px 0px 30px 0px grey;
+    height: 100vh;
+    box-shadow: 0px 0px 20px 0px grey;
   }
   .logo{
     font-size: 40px;
@@ -55,6 +58,7 @@
           <li role="presentation"><a class="btn btn-default" id="mn" href="GSDepense.php"><i class="fa fa-database"></i></a></li>
           <li role="presentation"><a class="btn btn-default" id="mn" href="GSDepense.php"><i class="fa fa-database"></i></a></li>
       </ul>
+      <a class="btn btn-default" href="deconnection.php" style="zindex:1;bottom:20px;position: fixed;"><i class="fa fa-door-open"></i></a>
       </div>
       <div class="col-md-10">
         <nav class="navbar navbar">
@@ -68,7 +72,7 @@
                 <span class="icon-bar"></span>
               </button>
               <a style="color: grey;" class="navbar-brand logo" href="#">TopTea</a>
-              <button type="button" class="navbar navbar-right btn btn-info" data-toggle="modal" data-target="#ins">+ Add</button>
+              <button type="button" class="navbar btn btn-info" style="stext-align:right;" data-toggle="modal" data-target="#ins">+ Add</button>
 
             <!-- Modal -->
               <div class="modal fade" id="ins" tabindex="-1" role="dialog">
@@ -80,38 +84,6 @@
                     <h3 class="myModalLabel">Ajout Parcelle</h3>
                   </div>
                   <div class="modal-body">
-                  <?php if (!empty($_GET["mod"])) { 
-                        $parcel=getParcelById($_GET["id"])[0];
-                    ?>
-                    <form action="../controllers/CrudParcelle.php" method="get">
-                          <input type="hidden" name="mod" value="u">
-                          <input type="hidden" name="id" value="<?php echo $_GET["id"]; ?>">
-                        <div class="form-group">
-                          <input class="form-control" placeholder="size" type="text" name="size" value="<?php echo $parcel["size"]; ?>">
-                        </div>
-                        <span for="">Date :</span>
-                    <div class="modal-body text-center">
-                        <div class="form-group">
-                          <input class="form-control" type="date" placeholder="labelle" name="date" value="<?php echo $parcel["startDate"]; ?>">
-                        </div>
-                        <span for="">Categorie :</span>
-                        <div class="form-group">
-                          <select class="form-control" name="teaCategory">
-                            <?php for ($i=0; $i!=count($listCatTea); $i++) { ?>
-                                <?php if ($listCatTea[$i]["id"]==$parcel["idTeaCategory"]) { ?>
-                                    <option value="<?php echo $listCatTea[$i]["id"]; ?>" selected><?php echo $listCatTea[$i]["name"]; ?></option>
-                                <?php } else { ?>
-                                <option value="<?php echo $listCatTea[$i]["id"]; ?>" selected><?php echo $listCatTea[$i]["name"]; ?></option>
-                            <?php } ?>
-                            <?php } ?>
-                          </select>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="submit" class="btn btn-default">valider</button>
-                    </div>
-                  </form>
-                  <?php } else { ?>
                     <form action="../../controllers/CrudParcelle.php" method="get">
                           <input type="hidden" name="mod" value="u">
                         <div class="form-group">
@@ -135,7 +107,6 @@
                       <button type="submit" class="btn btn-default">valider</button>
                     </div>
                   </form>
-                <?php } ?>
                   </div>
                 </div>
               </div>
@@ -146,16 +117,17 @@
         <div class="row-fluid boite">
           <!-- a boucler -->
             <?php for ($i=0; $i!=count($listParcel); $i++) { ?>
-            <div class="panel panel-default parcel">
-                <div class="panel-body" >
+            <div class="panel panel-defaul">
+              <div class="panel-body parcel" >
+                  <p>parcelle <?php echo $listParcel[$i]["id"] ?></p>
                 <div class="form-group">
-                    <p>Taille: <?php echo $listParcel[$i]["size"] ?></p>
+                    <p class="alert alert-success">Taille: <?php echo $listParcel[$i]["size"] ?></p>
                 </div>
                 <div class="form-group">
-                    <p>Début plantation: <?php echo $listParcel[$i]["startDate"] ?></p>
+                    <p class="alert alert-success">Début plantation: <?php echo $listParcel[$i]["startDate"] ?></p>
                 </div>
                 <div class="form-group">
-                    <p>Type de plantation: <?php echo getTeaCategoryById($listParcel[$i]["idTeaCategory"])[0]["name"]; ?></p>
+                    <p class="alert alert-success">Type de plantation: <?php echo getTeaCategoryById($listParcel[$i]["idTeaCategory"])[0]["name"]; ?></p>
                 </div>
                 <div class="form-group">
                     <a href="accueil.php?mod=u&id=<?php echo $listParcel[$i]["id"] ?>" class="btn btn-default">Modifier</a>
