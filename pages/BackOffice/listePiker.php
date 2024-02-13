@@ -86,8 +86,18 @@
                     <form action="../../controllers/CrudPiker.php" method="get">
                           <div class="form-group">
                             <input class="form-control" placeholder="name" type="text" name="name">
-                            <input type="" hidden value="c" name="mod">
                           </div>
+                          <div class="form form-group">
+                            <span for="dtn" class="form form-label">Date de naissance</span>
+                            <input type="date" class="form-control" name="dtn" id="dtn">
+                          </div>
+                          <div class="form-group">
+                          <select name="genre" id="genre" class="form-control">
+                            <option value="h">Homme</option>
+                            <option value="f">Femme</option>
+                          </select>
+                          </div>
+                          <input type="" hidden value="c" name="mod">
                       </div>
                       <div class="modal-footer">
                         <button type="submit" class="btn btn-default">valider</button>

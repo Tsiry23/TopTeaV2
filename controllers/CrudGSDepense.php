@@ -11,5 +11,5 @@
         AjoutCategSpent($name);
     }
 
-    header('Location:../pages/GSDepense.php');                         
+    header('Location:../pages/BackOffice/GSDepense.php');                         
 ?>
