@@ -4,7 +4,7 @@
     $mail=$_POST["mail"];
     $pwd=$_POST["pwd"];
 
-    $user=login($mail,$pwd);
+    $user=login($mail,$pwd,1);
 
     var_dump($user);
 
