@@ -25,7 +25,9 @@ create table parcel (
 
 create table picker (
     id int primary key  auto_increment,
-    name varchar (40)
+    name varchar (40),
+    gender varchar(1),
+    dob date
 );
 
 
@@ -68,5 +70,16 @@ INSERT INTO salary (salary, salaryDate) VALUES (5000, '2024-02-01');
 INSERT INTO categSpent (name) VALUES ('Transport');
 INSERT INTO spent (idcategSpent, spent, theDate) VALUES (1, 50.75, '2024-02-12');
 
+insert into teaCategory values (default,'The indien',default,1.8);
+insert into teaCategory values (default,'Tisane',default,1.8);
+insert into teaCategory values (default,'The blanc',default,1.8);
 
+insert into parcel values (default,120,1,'2023-10-12');
+insert into parcel values (default,20,2,'2024-01-10');
+insert into parcel values (default,200,3,'2024-02-01');
+insert into parcel values (default,80,4,'2023-12-30');
+
+
+insert into picking (id,idParcel,qty,idPicker,theDate) values (default,1,120,2,'2023-11-23');
+insert into picking (id,idParcel,qty,idPicker,theDate) values (default,2,140,3,'2024-05-11');
 --172.20.0.167
