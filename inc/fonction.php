@@ -1,9 +1,9 @@
 <?php  
-	
-	//include('connexion.php');
-	include('connectionForDeploiement.php'); 
 
-	function login ($email, $pwd) //retourne null si l'user n'existe pas
+	//include('connexion.php');
+	include('connectionForDeploiement.php');
+	
+	function login ($email, $pwd) //retourne un array vide si inexistant
 	{
 		$sql="select * from user where email=? and pswd=sha1(?)";
 		$connexion= dbconnect();
@@ -116,7 +116,7 @@
 		return $retour;
 	}
 	function getCategSpentById($id){
-		$sql= "select * from categSpent where name='%d'";
+		$sql= "select * from categSpent where id='%d'";
 		$sql= sprintf($sql,$id);
 		$connexion= dbconnect();
 		$req = $connexion->prepare($sql);
@@ -136,6 +136,15 @@
 		return $retour;
 	}
 
+	function getAllSpent(){
+		$sql= "select * from spent";
+		$connexion= dbconnect();
+		$req = $connexion->prepare($sql);
+		$req->execute();
+		$retour = $req->fetchAll(PDO::FETCH_ASSOC);
+		return $retour;
+	}
+
 	function AjoutUser($email,$pswd,$status){
 		$sql= "insert into user values(default,'%s',sha1('%s'),'%d')";
 		$sql= sprintf($sql,$email,$pswd,$status);
@@ -144,9 +153,9 @@
 		$req->execute();
 	}
 
-	function AjoutTeaCategory($name,$output,$space) { //space pour espace occupée par un pied
-		$sql= "insert into teaCategory values(default,'%s',default,'%d')";
-		$sql= sprintf($sql,$name,$space);
+	function AjoutTeaCategory($name,$output){
+		$sql= "insert into teaCategory values(default,'%s','%d')";
+		$sql= sprintf($sql,$name,$output);
 		$connexion= dbconnect();
 		$req = $connexion->prepare($sql);
 		$req->execute();
@@ -432,7 +441,6 @@
 
 		return $nbPieds;
 	}
-
 	function getDiffInMonth ($debut,$fin)
 	{
 		$dateDebut=new DateTime($debut);
@@ -488,10 +496,63 @@
 
 		return $total;
 	}
-	/*function getTotalSalaire ($debut,$fin)
+	//Donne le mallus à retirer d'une cueuillette
+	function getMallus ($idPicking)
 	{
-		$sql="select sum() from picking where theDate between :debut and :fin "
-	}*/
+		$picking=getPickingById($idPicking)[0];
+		$salary=getSalary()[0];
+
+		$salaryAmount=$picking["qty"]*$salary["salary"];
+
+		$mallus=0;
+		
+		if ($picking["qty"]<$salary["quotaMin"])
+		{
+			$mallus=$salaryAmount*$salary["mallus"];
+		}
+		
+		return $mallus;
+	}
+	function getBonus ($idPicking)
+	{
+		$picking=getPickingById($idPicking)[0];
+		$salary=getSalary()[0];
+
+		$salaryAmount=$picking["qty"]*$salary["salary"];
+
+		$bonus=0;
+		
+		if ($picking["qty"]>$salary["quotaMin"])
+		{
+			$bonus=$salaryAmount*$salary["bonus"];
+		}
+		
+		return $bonus;
+	}
+	function getSalaryAmount ($idPicking)
+	{
+		$picking=getPickingById($idPicking)[0];
+		$salary=getSalary()[0];
+
+		$salaryAmount=$picking["qty"]*$salary["salary"];
+
+		$salaryAmount-=getMallus($idPicking);
+		$salaryAmount+=getBonus($idPicking);
+
+		return $salaryAmount;
+	}
+	function getTotalSalaire ($debut,$fin)
+	{
+		$allPicking=getAllPickingBetween($debut,$fin);
+		$total=0;
+
+		for ($i=0; $i!=count($allPicking); $i++)
+		{
+			$total+=getSalaryAmount($allPicking[$i]["id"]);
+		}
+
+		return $total;
+	}
 	function getQttRestant ($idParcel,$pickingDate)
 	{
 		$parcel=getParcelById($idParcel)[0];
