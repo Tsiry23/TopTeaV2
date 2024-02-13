@@ -1,6 +1,8 @@
 <?php 
-  include("../inc/fonction.php");
+  include("../../inc/fonction.php");
   $AllParcelle=getAllParcel();
+  $dateDebut=$_GET['dateDebut'];
+  $dateFin=$_GET['dateFin'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -80,8 +82,10 @@
         </nav><br>
         <!-- Formulaire -->
         <div class="row-fluid">
-            <p>Date debut et fin</p>
+            <p><?php echo 'Date debut :'.$dateDebut ;?></p>
+            <p><?php echo 'Date fin :'.$dateFin ;?></p>
             <table class="table">
+              <br>
                 <tr>
                     <td >Total cueillette</td>
                     <td >Coût de revient</td>
@@ -89,11 +93,8 @@
                     <td>Depense</td>
                     <td>Benefice</td>
                 </tr>
-              <?php
-                  $totatlCueillette =   
-              ?>
                 <tr>
-                    <td >1</td>
+                    <td ><?php echo getTotalProd($dateDebut,$dateFin); ?></td>
                     <td >2</td>
                     <td >3</td>
                     <td >4</td>
