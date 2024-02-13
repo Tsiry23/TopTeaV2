@@ -44,12 +44,13 @@
   <div class="container-fluid">
   	<div class="row">
       <div class="col-md-1 facture"><br>
-        <ul class="nav nav-pills nav-stacked">
+      <ul class="nav nav-pills nav-stacked">
           <li role="presentation"><a class="btn btn-default" id="mn" href="accueil.php"><i class="fa fa-home"></i></a></li>
           <li role="presentation"><a class="btn btn-default" id="mn" href="cueillette.php"><i class="fa fa-database"></i></a></li>
-          <li role="presentation"><a class="btn btn-default" id="mn" href="listePiker.php"><i class="fa fa-list-alt"></i></a></li>
-          <li role="presentation"><a class="btn btn-default" id="mn" href="GSDepense.php"><i class="fa fa-database"></i></a></li>
+          <li role="presentation"><a class="btn btn-default" id="mn" href="listePaiements1.php"><i class="fa fa-list-alt"></i></a></li>
+          <li role="presentation"><a class="btn btn-default" id="mn" href="result1.php"><i class="fa fa-database"></i></a></li>
       </ul>
+      <a class="btn btn-default" href="../../controllers/deconnection.php" style="zindex:1;bottom:20px;position: fixed;"><i class="fa fa-door-open"></i></a>
       </div>
       <div class="col-md-8">
         <nav class="navbar navbar">
@@ -62,7 +63,6 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a style="color: white;" class="navbar-brand logo" href="#"><img width="40" height="40" src="../../assets/logo2.png"></a>
             </div>
           </div>
         </nav><br>

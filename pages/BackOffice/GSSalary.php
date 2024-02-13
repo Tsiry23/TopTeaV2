@@ -1,5 +1,13 @@
-<?php 
-  include('../../inc/fonction.php');
+<?php
+    session_start();
+    if(!isset($_SESSION['user'])){
+      header('location:index.php');
+    }
+    include("../../inc/fonction.php");
+    $user= $_SESSION['user'];
+
+    $listCatTea=getAllTeaCategory();
+    $listParcel=getAllParcel();
 ?>
 <!DOCTYPE html>
 <html>
@@ -20,17 +28,24 @@
     /*background: grey;*/
   }
   .parcel{
-    background: rgba(240,240,240,0.7); 
-    border: none; 
-    border-bottom-right-radius: 50px ;
+    width:250px;
   }
   .facture{
     background: #2F2F2F12;
-    height: 100vh;overflow: auto;
-    box-shadow: 0px 0px 50px 0px grey;
+    height: 100vh;
+    box-shadow: 0px 0px 20px 0px grey;
   }
   .logo{
     font-size: 40px;
+  }
+
+  .boite{
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+    column-gap: 1em;
+    height: 60vh;overflow: hidden;
+    overflow-y: auto;
   }
 </style>
 <body>
@@ -43,8 +58,8 @@
           <li role="presentation"><a class="btn btn-default" id="mn" href="GSDepense.php"><i class="fa fa-database"></i> Depense</a></li>
           <li role="presentation"><a class="btn btn-default" id="mn" href="saison.php"><i class="fa fa-database"></i> Saison</a></li>
           <li role="presentation"><a class="btn btn-default" id="mn" href="GSSalary.php"><i class="fa fa-database"></i> salaire</a></li>
-        </ul>
-        <a class="btn btn-default" href="../../controllers/deconnection.php" style="zindex:1;bottom:20px;position: fixed;"><i class="fa fa-door-open"></i></a>
+      </ul>
+      <a class="btn btn-default" href="../../controllers/deconnection.php" style="zindex:1;bottom:20px;position: fixed;"><i class="fa fa-door-open"></i></a>
       </div>
       <div class="col-md-10">
         <nav class="navbar navbar">
@@ -61,48 +76,29 @@
             </div>
           </div>
         </nav><br>
-        <div class="row-fluid boite">
-          <h3>Liste catégories dépense</h3>
-          <table class="table" style="width: 100%;">
-            <tr>
-              <th>id</th>
-              <th>Nom categorie</th>
+        <div class="row-fluid">
+            <form action="../../controllers/CrudParcelle.php" method="get"">
+                <div class="form-group">
+                    <label for="">salaire :</label>
+                    <input class="form-control" type="text" name="salaire">
+                </div>
 
-              <th><button type="button" class="navbar-right btn btn-info" data-toggle="modal" data-target="#ins">+ Add</button></th>
-                <!-- Modal -->
-                  <div class="modal fade" id="ins" tabindex="-1" role="dialog">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        
-                      <div class="modal-header">  
-                        <button type="button" class="close" data-dismiss="modal">x</button>
-                        <h3 class="myModalLabel">Depense</h3>
-                      </div>
-                      <div class="modal-body text-center">
-                        <form action="../../controllers/CrudDepense.php" method="get">
-                          <div class="form-group">
-                            <input class="form-control" placeholder="spent" type="text" name="name">
-                          </div>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="submit" class="btn btn-default">valider</button>
-                      </div>
-                    </form>
-                      </div>
-                    </div>
-                  </div>
-                <!-- Modal -->  
-            </tr>
-            <?php 
-              $AllCatDepense=getCategSpent();
-              for ($i=0; $i < count($AllCatDepense); $i++) { ?>
-              <tr>
-                <td><?php echo $AllCatDepense[$i]["id"]?></td>
-                <td><?php echo $AllCatDepense[$i]["name"]?></td>
-                <td><a class="btn btn-danger" href="../../controllers/CrudGSDepense.php?mod=d&id=<?php echo $AllCatDepense[$i]['id']?>">Delete</a></td>  
-              </tr>
-              <?php } ?>
-          </table>
+                <div class="form-group">
+                    <label for="">quota :</label>
+                    <input class="form-control" type="text" name="quota">
+                </div>
+
+                <div class="form-group">
+                    <label for="">mallus :</label>
+                    <input class="form-control" type="text" name="mallus">
+                </div>
+
+                <div class="form-group">
+                    <label for="">bonus :</label>
+                    <input class="form-control" type="text" name="bonus">
+                </div>
+                <button class="btn btn-success" type="submit">Valider</button>
+            </form>
         </div>
       </div>
       <div class="row-fluid text-center" style="width: 100%;bottom:0;position: fixed;">
