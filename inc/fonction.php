@@ -3,12 +3,12 @@
 	//include('connexion.php');
 	include('connectionForDeploiement.php');
 	
-	function login ($email, $pwd) //retourne un array vide si inexistant
+	function login ($email, $pwd,$status) //retourne un array vide si inexistant
 	{
-		$sql="select * from user where email=? and pswd=sha1(?)";
+		$sql="select * from user where email=? and pswd=sha1(?) and status=?";
 		$connexion= dbconnect();
 		$req = $connexion->prepare($sql);
-		$req->execute(array($email,$pwd));
+		$req->execute(array($email,$pwd,$status));
 		$retour = $req->fetchAll(PDO::FETCH_ASSOC);
 		return $retour;
 	}
@@ -76,6 +76,16 @@
 		$sql= "select * from picking";
 		$connexion= dbconnect();
 		$req = $connexion->prepare($sql);
+		$req->execute();
+		$retour = $req->fetchAll(PDO::FETCH_ASSOC);
+		return $retour;
+	}
+	function getAllPickingBetween ($dateDebut, $dateFin) {
+		$sql= "select * from picking where theDate between :debut and :fin";
+		$connexion= dbconnect();
+		$req = $connexion->prepare($sql);
+		$req->bindValue(':debut',$dateDebut);
+		$req->bindValue(':fin',$dateFin);
 		$req->execute();
 		$retour = $req->fetchAll(PDO::FETCH_ASSOC);
 		return $retour;
@@ -286,7 +296,7 @@
 		$req->execute();
 	}
 	
-	function getSalaryByDate($dateGiven) {
+	function getSalaryByDate ($dateGiven) {
 		// Connexion à la base de données
 		$connexion = dbconnect();
 
@@ -486,7 +496,63 @@
 
 		return $total;
 	}
-	
+	//Donne le mallus à retirer d'une cueuillette
+	function getMallus ($idPicking)
+	{
+		$picking=getPickingById($idPicking)[0];
+		$salary=getSalary()[0];
+
+		$salaryAmount=$picking["qty"]*$salary["salary"];
+
+		$mallus=0;
+		
+		if ($picking["qty"]<$salary["quotaMin"])
+		{
+			$mallus=$salaryAmount*$salary["mallus"];
+		}
+		
+		return $mallus;
+	}
+	function getBonus ($idPicking)
+	{
+		$picking=getPickingById($idPicking)[0];
+		$salary=getSalary()[0];
+
+		$salaryAmount=$picking["qty"]*$salary["salary"];
+
+		$bonus=0;
+		
+		if ($picking["qty"]>$salary["quotaMin"])
+		{
+			$bonus=$salaryAmount*$salary["bonus"];
+		}
+		
+		return $bonus;
+	}
+	function getSalaryAmount ($idPicking)
+	{
+		$picking=getPickingById($idPicking)[0];
+		$salary=getSalary()[0];
+
+		$salaryAmount=$picking["qty"]*$salary["salary"];
+
+		$salaryAmount-=getMallus($idPicking);
+		$salaryAmount+=getBonus($idPicking);
+
+		return $salaryAmount;
+	}
+	function getTotalSalaire ($debut,$fin)
+	{
+		$allPicking=getAllPickingBetween($debut,$fin);
+		$total=0;
+
+		for ($i=0; $i!=count($allPicking); $i++)
+		{
+			$total+=getSalaryAmount($allPicking[$i]["id"]);
+		}
+
+		return $total;
+	}
 	function getQttRestant ($idParcel,$pickingDate)
 	{
 		$parcel=getParcelById($idParcel)[0];
