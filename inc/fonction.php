@@ -387,20 +387,42 @@
 		return $result['totalSpent'];
 	}	
 
-<<<<<<< Updated upstream
 	function getPlantedQuantity ($idParcel)
 	{
 		$parcel=getParcelById($idParcel)[0];
-		$teaCategory=getTeaCategoryById($parcel["idTeaCategory"]);
+		$teaCategory=getTeaCategoryById($parcel["idTeaCategory"])[0];
 
 		$nbPieds=(int)($parcel["size"]/$teaCategory["space"]);
 
 		return $nbPieds;
 	}
-=======
-	function coutDeRevient($startDate, $endDate){
-		return calculateTotalSpent()/calculateQtyBy2Date($startDate, $endDate);
-	}
 
->>>>>>> Stashed changes
+	function getProductedQuantity ($idParcel,$debut,$fin)
+	{
+		$parcel=getParcelById($idParcel)[0];
+		$teaCategory=getTeaCategoryById($parcel["idTeaCategory"]);
+
+		$debutExploitation=new DateTime($parcel["startDate"]);
+		$debutStats=new DateTime($debut);
+		$finStats=new DateTime($fin);
+
+		$productedQuantity=0;
+
+		if ($debutStats<$debutExploitation)
+		{
+			return 0;
+		}
+		else 
+		{
+			// Calcul de la différence en mois avec précision sur les jours
+			//Le récent indrindra no entre parenthèse
+			$interval = $debutStats->diff($finStats);
+			
+			// Calcul du total des mois en prenant en compte les jours
+			$totalMonths = ($interval->y * 12) + $interval->m;
+			$productedQuantity=$teaCategory["output"]*$totalMonths;
+		}
+
+		return $productedQuantity;
+	}
 ?>
