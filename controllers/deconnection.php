@@ -1,4 +1,4 @@
 <?php
     session_destroy();
-    header("Location:index.php?error=bye");
+    header("Location:../index.php?error=bye");
 ?>
